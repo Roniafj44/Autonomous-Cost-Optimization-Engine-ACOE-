@@ -1,0 +1,19 @@
+subscription_id,vendor_name,product_name,total_licenses,active_users,monthly_cost_inr,plan_tier,renewal_date,department
+SAAS-001,Slack Technologies,Slack Business+,500,485,375000,enterprise,2025-12-31,Company-wide
+SAAS-002,Atlassian,Jira Software,300,112,225000,premium,2025-09-30,Engineering
+SAAS-003,Microsoft,Microsoft 365,450,440,337500,E3,2025-11-30,Company-wide
+SAAS-004,Salesforce,Sales Cloud,200,67,500000,enterprise,2025-10-31,Sales
+SAAS-005,Zoom,Zoom Workplace,400,156,200000,business,2026-01-31,Company-wide
+SAAS-006,Adobe,Creative Cloud,150,28,262500,teams,2025-08-31,Marketing
+SAAS-007,HubSpot,Marketing Hub,100,92,175000,professional,2025-12-31,Marketing
+SAAS-008,Figma,Figma Enterprise,80,31,120000,enterprise,2025-10-31,Design
+SAAS-009,GitHub,GitHub Enterprise,250,243,187500,enterprise,2025-12-31,Engineering
+SAAS-010,Notion,Notion Teams,200,45,100000,plus,2025-07-31,Company-wide
+SAAS-011,Datadog,Infrastructure,50,48,450000,pro,2025-11-30,DevOps
+SAAS-012,Monday.com,Work OS,180,52,135000,enterprise,2025-09-30,Operations
+SAAS-013,Zendesk,Support Suite,120,115,210000,professional,2025-12-31,Support
+SAAS-014,Canva,Canva Teams,100,18,50000,teams,2025-08-31,Marketing
+SAAS-015,DocuSign,eSignature,75,22,112500,business_pro,2025-10-31,Legal
+SAAS-016,Grammarly,Grammarly Business,200,34,80000,business,2025-09-30,Company-wide
+SAAS-017,Miro,Miro Business,120,25,90000,business,2025-11-30,Design
+SAAS-018,Asana,Asana Business,150,42,135000,business,2025-08-31,Operations

@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  acoe-engine:
+    build: .
+    container_name: acoe-engine
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data:ro
+      - acoe-state:/app/state
+      - acoe-logs:/app/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=utf-8
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  acoe-dashboard:
+    build: .
+    container_name: acoe-dashboard
+    command: streamlit run dashboard/app.py --server.port=8501 --server.headless=true
+    ports:
+      - "8501:8501"
+    depends_on:
+      acoe-engine:
+        condition: service_healthy
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+volumes:
+  acoe-state:
+  acoe-logs:

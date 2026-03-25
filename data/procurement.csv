@@ -1,0 +1,16 @@
+record_id,vendor_name,service_category,contract_value_inr,contract_start,contract_end,department,payment_frequency,description
+PROC-001,TechSoft Solutions,IT Consulting,2400000,2025-01-01,2025-12-31,Engineering,monthly,Software development consulting
+PROC-002,CloudNine Infra,Cloud Hosting,1800000,2025-03-01,2026-02-28,IT Operations,monthly,AWS managed services
+PROC-003,DataPrime Analytics,Data Analytics,960000,2025-02-01,2026-01-31,Data Science,quarterly,Analytics platform license
+PROC-004,TechSoft Corp,IT Consulting,2200000,2025-01-15,2025-12-31,Engineering,monthly,Technical consulting services
+PROC-005,SecureNet Systems,Cybersecurity,1440000,2025-04-01,2026-03-31,IT Security,monthly,Endpoint protection suite
+PROC-006,CloudSky Services,Cloud Hosting,1600000,2025-02-15,2026-02-14,IT Operations,monthly,Azure managed hosting
+PROC-007,PayRoll Plus,HR Services,720000,2025-01-01,2025-12-31,Human Resources,monthly,Payroll processing
+PROC-008,SecureGuard Inc,Cybersecurity,1320000,2025-03-01,2026-02-28,IT Security,monthly,Network security monitoring
+PROC-009,InnovateTech Labs,R&D Services,3600000,2025-06-01,2026-05-31,R&D,quarterly,Innovation lab partnership
+PROC-010,OfficeSpace Pro,Facilities,480000,2025-01-01,2025-12-31,Admin,monthly,Office management software
+PROC-011,DataPrime Solutions,Data Analytics,1080000,2025-05-01,2026-04-30,Marketing,monthly,Marketing analytics platform
+PROC-012,TravelEase Corp,Travel Management,360000,2025-01-01,2025-12-31,Admin,monthly,Corporate travel booking
+PROC-013,CloudNine Technologies,Cloud Hosting,1500000,2025-04-01,2026-03-31,Engineering,monthly,GCP managed infrastructure
+PROC-014,LegalShield Partners,Legal Services,840000,2025-02-01,2026-01-31,Legal,quarterly,Legal compliance advisory
+PROC-015,MarketBoost Agency,Marketing,1200000,2025-03-01,2026-02-28,Marketing,monthly,Digital marketing services

@@ -1,0 +1,13 @@
+sla_id,service_name,vendor_name,metric_name,target_value,current_value,measurement_unit,breach_penalty_inr,measurement_timestamp,breach_deadline
+SLA-001,Cloud Hosting,CloudNine Infra,Uptime,99.9,99.2,percent,500000,2026-03-25T05:00:00,2026-03-26T05:00:00
+SLA-002,API Gateway,TechSoft Solutions,Response Time,200,185,milliseconds,300000,2026-03-25T05:00:00,2026-04-01T05:00:00
+SLA-003,Database Service,AWS RDS,Availability,99.95,99.91,percent,750000,2026-03-25T05:00:00,2026-03-27T12:00:00
+SLA-004,CDN Service,CloudSky Services,Cache Hit Rate,95,88,percent,200000,2026-03-25T05:00:00,2026-03-26T18:00:00
+SLA-005,Support Desk,Zendesk,First Response Time,30,28,minutes,150000,2026-03-25T05:00:00,2026-04-10T05:00:00
+SLA-006,CI/CD Pipeline,GitHub,Build Success Rate,98,94,percent,250000,2026-03-25T05:00:00,2026-03-27T05:00:00
+SLA-007,Monitoring,Datadog,Alert Accuracy,99,98.5,percent,180000,2026-03-25T05:00:00,2026-04-05T05:00:00
+SLA-008,Email Service,Microsoft 365,Delivery Rate,99.5,97.2,percent,400000,2026-03-25T05:00:00,2026-03-26T12:00:00
+SLA-009,Storage,AWS S3,Durability,99.999999999,99.999999998,percent,1000000,2026-03-25T05:00:00,2026-06-01T05:00:00
+SLA-010,Security,SecureNet Systems,Incident Response,60,55,minutes,350000,2026-03-25T05:00:00,2026-04-02T05:00:00
+SLA-011,DNS Service,CloudNine Infra,Resolution Time,50,62,milliseconds,120000,2026-03-25T05:00:00,2026-03-26T00:00:00
+SLA-012,Load Balancer,Azure,Throughput,10000,9200,requests_per_sec,280000,2026-03-25T05:00:00,2026-03-28T05:00:00

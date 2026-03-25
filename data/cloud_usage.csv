@@ -1,0 +1,16 @@
+resource_id,provider,resource_type,region,capacity_units,avg_usage_units,peak_usage_units,monthly_cost_inr,department
+CLOUD-001,AWS,EC2 Compute,ap-south-1,1000,320,580,850000,Engineering
+CLOUD-002,AWS,RDS Database,ap-south-1,500,465,490,420000,Engineering
+CLOUD-003,AWS,S3 Storage,ap-south-1,10000,2100,3200,180000,Data Science
+CLOUD-004,Azure,Virtual Machines,centralindia,800,185,290,720000,IT Operations
+CLOUD-005,Azure,SQL Database,centralindia,400,375,395,350000,IT Operations
+CLOUD-006,GCP,Compute Engine,asia-south1,600,140,220,540000,Engineering
+CLOUD-007,GCP,BigQuery,asia-south1,2000,1850,1950,300000,Data Science
+CLOUD-008,AWS,EKS Cluster,ap-south-1,300,85,150,450000,DevOps
+CLOUD-009,AWS,ElastiCache,ap-south-1,200,42,78,160000,Engineering
+CLOUD-010,Azure,AKS Cluster,centralindia,400,95,180,380000,DevOps
+CLOUD-011,AWS,Lambda,ap-south-1,1000,890,950,120000,Engineering
+CLOUD-012,GCP,Cloud Run,asia-south1,500,110,200,250000,Engineering
+CLOUD-013,AWS,Redshift,ap-south-1,800,180,340,520000,Data Science
+CLOUD-014,Azure,Blob Storage,centralindia,5000,1200,1800,95000,IT Operations
+CLOUD-015,GCP,Cloud SQL,asia-south1,300,265,290,220000,Engineering

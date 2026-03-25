@@ -1,0 +1,2257 @@
+{
+  "cycle_id": 58,
+  "timestamp": "2026-03-25T06:26:36.436293",
+  "input_summary": {
+    "procurement_records": 15,
+    "saas_subscriptions": 18,
+    "cloud_resources": 15,
+    "sla_metrics": 12,
+    "total_records": 60
+  },
+  "detection": {
+    "total_issues": 32,
+    "issues": [
+      {
+        "issue_id": "DUP-35DF0CED",
+        "category": "duplicate_vendor",
+        "severity": "high",
+        "title": "Duplicate vendors in it consulting",
+        "description": "Found 2 vendors providing it consulting: TechSoft Solutions, TechSoft Corp. Consolidation could save ₹2,400,000/year.",
+        "affected_entity_id": "PROC-001",
+        "affected_entity_type": "procurement",
+        "evidence": {
+          "category": "it consulting",
+          "vendors": [
+            {
+              "name": "TechSoft Solutions",
+              "cost": 2400000.0,
+              "id": "PROC-001"
+            },
+            {
+              "name": "TechSoft Corp",
+              "cost": 2200000.0,
+              "id": "PROC-004"
+            }
+          ],
+          "total_cost": 4600000.0
+        },
+        "potential_savings_inr": 2400000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "DUP-11F53EB1",
+        "category": "duplicate_vendor",
+        "severity": "high",
+        "title": "Duplicate vendors in cloud hosting",
+        "description": "Found 3 vendors providing cloud hosting: CloudNine Infra, CloudSky Services, CloudNine Technologies. Consolidation could save ₹3,400,000/year.",
+        "affected_entity_id": "PROC-002",
+        "affected_entity_type": "procurement",
+        "evidence": {
+          "category": "cloud hosting",
+          "vendors": [
+            {
+              "name": "CloudNine Infra",
+              "cost": 1800000.0,
+              "id": "PROC-002"
+            },
+            {
+              "name": "CloudSky Services",
+              "cost": 1600000.0,
+              "id": "PROC-006"
+            },
+            {
+              "name": "CloudNine Technologies",
+              "cost": 1500000.0,
+              "id": "PROC-013"
+            }
+          ],
+          "total_cost": 4900000.0
+        },
+        "potential_savings_inr": 3400000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "DUP-6BAE055E",
+        "category": "duplicate_vendor",
+        "severity": "high",
+        "title": "Duplicate vendors in data analytics",
+        "description": "Found 2 vendors providing data analytics: DataPrime Analytics, DataPrime Solutions. Consolidation could save ₹1,080,000/year.",
+        "affected_entity_id": "PROC-003",
+        "affected_entity_type": "procurement",
+        "evidence": {
+          "category": "data analytics",
+          "vendors": [
+            {
+              "name": "DataPrime Analytics",
+              "cost": 960000.0,
+              "id": "PROC-003"
+            },
+            {
+              "name": "DataPrime Solutions",
+              "cost": 1080000.0,
+              "id": "PROC-011"
+            }
+          ],
+          "total_cost": 2040000.0
+        },
+        "potential_savings_inr": 1080000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "DUP-F9991D93",
+        "category": "duplicate_vendor",
+        "severity": "high",
+        "title": "Duplicate vendors in cybersecurity",
+        "description": "Found 2 vendors providing cybersecurity: SecureNet Systems, SecureGuard Inc. Consolidation could save ₹1,440,000/year.",
+        "affected_entity_id": "PROC-005",
+        "affected_entity_type": "procurement",
+        "evidence": {
+          "category": "cybersecurity",
+          "vendors": [
+            {
+              "name": "SecureNet Systems",
+              "cost": 1440000.0,
+              "id": "PROC-005"
+            },
+            {
+              "name": "SecureGuard Inc",
+              "cost": 1320000.0,
+              "id": "PROC-008"
+            }
+          ],
+          "total_cost": 2760000.0
+        },
+        "potential_savings_inr": 1440000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-AF26DEF4",
+        "category": "saas_underutilization",
+        "severity": "medium",
+        "title": "Jira Software underutilized (37%)",
+        "description": "Jira Software by Atlassian: 112/300 licenses used (37.3% utilization). 188 unused licenses = ₹1,692,000/year wasted.",
+        "affected_entity_id": "SAAS-002",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Jira Software",
+          "vendor": "Atlassian",
+          "total_licenses": 300,
+          "active_users": 112,
+          "utilization": 0.3733,
+          "monthly_cost": 225000.0,
+          "unused_licenses": 188
+        },
+        "potential_savings_inr": 1692000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-8CD6634B",
+        "category": "saas_underutilization",
+        "severity": "medium",
+        "title": "Sales Cloud underutilized (34%)",
+        "description": "Sales Cloud by Salesforce: 67/200 licenses used (33.5% utilization). 133 unused licenses = ₹3,990,000/year wasted.",
+        "affected_entity_id": "SAAS-004",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Sales Cloud",
+          "vendor": "Salesforce",
+          "total_licenses": 200,
+          "active_users": 67,
+          "utilization": 0.335,
+          "monthly_cost": 500000.0,
+          "unused_licenses": 133
+        },
+        "potential_savings_inr": 3990000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-58B7B712",
+        "category": "saas_underutilization",
+        "severity": "medium",
+        "title": "Zoom Workplace underutilized (39%)",
+        "description": "Zoom Workplace by Zoom: 156/400 licenses used (39.0% utilization). 244 unused licenses = ₹1,464,000/year wasted.",
+        "affected_entity_id": "SAAS-005",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Zoom Workplace",
+          "vendor": "Zoom",
+          "total_licenses": 400,
+          "active_users": 156,
+          "utilization": 0.39,
+          "monthly_cost": 200000.0,
+          "unused_licenses": 244
+        },
+        "potential_savings_inr": 1464000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-CF9DD32B",
+        "category": "saas_underutilization",
+        "severity": "critical",
+        "title": "Creative Cloud underutilized (19%)",
+        "description": "Creative Cloud by Adobe: 28/150 licenses used (18.7% utilization). 122 unused licenses = ₹2,562,000/year wasted.",
+        "affected_entity_id": "SAAS-006",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Creative Cloud",
+          "vendor": "Adobe",
+          "total_licenses": 150,
+          "active_users": 28,
+          "utilization": 0.1867,
+          "monthly_cost": 262500.0,
+          "unused_licenses": 122
+        },
+        "potential_savings_inr": 2562000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-070DEE32",
+        "category": "saas_underutilization",
+        "severity": "medium",
+        "title": "Figma Enterprise underutilized (39%)",
+        "description": "Figma Enterprise by Figma: 31/80 licenses used (38.8% utilization). 49 unused licenses = ₹882,000/year wasted.",
+        "affected_entity_id": "SAAS-008",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Figma Enterprise",
+          "vendor": "Figma",
+          "total_licenses": 80,
+          "active_users": 31,
+          "utilization": 0.3875,
+          "monthly_cost": 120000.0,
+          "unused_licenses": 49
+        },
+        "potential_savings_inr": 882000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-14C2FD0B",
+        "category": "saas_underutilization",
+        "severity": "high",
+        "title": "Notion Teams underutilized (22%)",
+        "description": "Notion Teams by Notion: 45/200 licenses used (22.5% utilization). 155 unused licenses = ₹930,000/year wasted.",
+        "affected_entity_id": "SAAS-010",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Notion Teams",
+          "vendor": "Notion",
+          "total_licenses": 200,
+          "active_users": 45,
+          "utilization": 0.225,
+          "monthly_cost": 100000.0,
+          "unused_licenses": 155
+        },
+        "potential_savings_inr": 930000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-B9F3964B",
+        "category": "saas_underutilization",
+        "severity": "high",
+        "title": "Work OS underutilized (29%)",
+        "description": "Work OS by Monday.com: 52/180 licenses used (28.9% utilization). 128 unused licenses = ₹1,152,000/year wasted.",
+        "affected_entity_id": "SAAS-012",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Work OS",
+          "vendor": "Monday.com",
+          "total_licenses": 180,
+          "active_users": 52,
+          "utilization": 0.2889,
+          "monthly_cost": 135000.0,
+          "unused_licenses": 128
+        },
+        "potential_savings_inr": 1152000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-15E82B40",
+        "category": "saas_underutilization",
+        "severity": "critical",
+        "title": "Canva Teams underutilized (18%)",
+        "description": "Canva Teams by Canva: 18/100 licenses used (18.0% utilization). 82 unused licenses = ₹492,000/year wasted.",
+        "affected_entity_id": "SAAS-014",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Canva Teams",
+          "vendor": "Canva",
+          "total_licenses": 100,
+          "active_users": 18,
+          "utilization": 0.18,
+          "monthly_cost": 50000.0,
+          "unused_licenses": 82
+        },
+        "potential_savings_inr": 492000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-F42CBD08",
+        "category": "saas_underutilization",
+        "severity": "high",
+        "title": "eSignature underutilized (29%)",
+        "description": "eSignature by DocuSign: 22/75 licenses used (29.3% utilization). 53 unused licenses = ₹954,000/year wasted.",
+        "affected_entity_id": "SAAS-015",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "eSignature",
+          "vendor": "DocuSign",
+          "total_licenses": 75,
+          "active_users": 22,
+          "utilization": 0.2933,
+          "monthly_cost": 112500.0,
+          "unused_licenses": 53
+        },
+        "potential_savings_inr": 954000.0,
+        "detected_at": "2026-03-25T06:26:36.433044"
+      },
+      {
+        "issue_id": "SAAS-DA1C4B0C",
+        "category": "saas_underutilization",
+        "severity": "critical",
+        "title": "Grammarly Business underutilized (17%)",
+        "description": "Grammarly Business by Grammarly: 34/200 licenses used (17.0% utilization). 166 unused licenses = ₹796,800/year wasted.",
+        "affected_entity_id": "SAAS-016",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Grammarly Business",
+          "vendor": "Grammarly",
+          "total_licenses": 200,
+          "active_users": 34,
+          "utilization": 0.17,
+          "monthly_cost": 80000.0,
+          "unused_licenses": 166
+        },
+        "potential_savings_inr": 796800.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "SAAS-EBABFD06",
+        "category": "saas_underutilization",
+        "severity": "high",
+        "title": "Miro Business underutilized (21%)",
+        "description": "Miro Business by Miro: 25/120 licenses used (20.8% utilization). 95 unused licenses = ₹855,000/year wasted.",
+        "affected_entity_id": "SAAS-017",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Miro Business",
+          "vendor": "Miro",
+          "total_licenses": 120,
+          "active_users": 25,
+          "utilization": 0.2083,
+          "monthly_cost": 90000.0,
+          "unused_licenses": 95
+        },
+        "potential_savings_inr": 855000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "SAAS-8705B753",
+        "category": "saas_underutilization",
+        "severity": "high",
+        "title": "Asana Business underutilized (28%)",
+        "description": "Asana Business by Asana: 42/150 licenses used (28.0% utilization). 108 unused licenses = ₹1,166,400/year wasted.",
+        "affected_entity_id": "SAAS-018",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "product": "Asana Business",
+          "vendor": "Asana",
+          "total_licenses": 150,
+          "active_users": 42,
+          "utilization": 0.28,
+          "monthly_cost": 135000.0,
+          "unused_licenses": 108
+        },
+        "potential_savings_inr": 1166400.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-1251916D",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "EC2 Compute on AWS over-provisioned (32%)",
+        "description": "CLOUD-001 (EC2 Compute) on AWS: avg usage 320.0/1000.0 units (32.0%). Right-sizing could save ₹4,284,000/year.",
+        "affected_entity_id": "CLOUD-001",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "AWS",
+          "resource_type": "EC2 Compute",
+          "capacity": 1000.0,
+          "avg_usage": 320.0,
+          "peak_usage": 580.0,
+          "utilization": 0.32,
+          "monthly_cost": 850000.0
+        },
+        "potential_savings_inr": 4284000.000000001,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-11B3C2B8",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "S3 Storage on AWS over-provisioned (21%)",
+        "description": "CLOUD-003 (S3 Storage) on AWS: avg usage 2100.0/10000.0 units (21.0%). Right-sizing could save ₹1,468,800/year.",
+        "affected_entity_id": "CLOUD-003",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "AWS",
+          "resource_type": "S3 Storage",
+          "capacity": 10000.0,
+          "avg_usage": 2100.0,
+          "peak_usage": 3200.0,
+          "utilization": 0.21,
+          "monthly_cost": 180000.0
+        },
+        "potential_savings_inr": 1468799.9999999998,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-21440C36",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "Virtual Machines on Azure over-provisioned (23%)",
+        "description": "CLOUD-004 (Virtual Machines) on Azure: avg usage 185.0/800.0 units (23.1%). Right-sizing could save ₹5,508,000/year.",
+        "affected_entity_id": "CLOUD-004",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "Azure",
+          "resource_type": "Virtual Machines",
+          "capacity": 800.0,
+          "avg_usage": 185.0,
+          "peak_usage": 290.0,
+          "utilization": 0.2313,
+          "monthly_cost": 720000.0
+        },
+        "potential_savings_inr": 5507999.999999999,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-13098682",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "Compute Engine on GCP over-provisioned (23%)",
+        "description": "CLOUD-006 (Compute Engine) on GCP: avg usage 140.0/600.0 units (23.3%). Right-sizing could save ₹4,104,000/year.",
+        "affected_entity_id": "CLOUD-006",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "GCP",
+          "resource_type": "Compute Engine",
+          "capacity": 600.0,
+          "avg_usage": 140.0,
+          "peak_usage": 220.0,
+          "utilization": 0.2333,
+          "monthly_cost": 540000.0
+        },
+        "potential_savings_inr": 4104000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-22187CAA",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "EKS Cluster on AWS over-provisioned (28%)",
+        "description": "CLOUD-008 (EKS Cluster) on AWS: avg usage 85.0/300.0 units (28.3%). Right-sizing could save ₹2,700,000/year.",
+        "affected_entity_id": "CLOUD-008",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "AWS",
+          "resource_type": "EKS Cluster",
+          "capacity": 300.0,
+          "avg_usage": 85.0,
+          "peak_usage": 150.0,
+          "utilization": 0.2833,
+          "monthly_cost": 450000.0
+        },
+        "potential_savings_inr": 2700000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-175DB8DC",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "ElastiCache on AWS over-provisioned (21%)",
+        "description": "CLOUD-009 (ElastiCache) on AWS: avg usage 42.0/200.0 units (21.0%). Right-sizing could save ₹1,171,200/year.",
+        "affected_entity_id": "CLOUD-009",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "AWS",
+          "resource_type": "ElastiCache",
+          "capacity": 200.0,
+          "avg_usage": 42.0,
+          "peak_usage": 78.0,
+          "utilization": 0.21,
+          "monthly_cost": 160000.0
+        },
+        "potential_savings_inr": 1171200.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-71A4D6EA",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "AKS Cluster on Azure over-provisioned (24%)",
+        "description": "CLOUD-010 (AKS Cluster) on Azure: avg usage 95.0/400.0 units (23.8%). Right-sizing could save ₹2,508,000/year.",
+        "affected_entity_id": "CLOUD-010",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "Azure",
+          "resource_type": "AKS Cluster",
+          "capacity": 400.0,
+          "avg_usage": 95.0,
+          "peak_usage": 180.0,
+          "utilization": 0.2375,
+          "monthly_cost": 380000.0
+        },
+        "potential_savings_inr": 2508000.0000000005,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-1C8BDD32",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "Cloud Run on GCP over-provisioned (22%)",
+        "description": "CLOUD-012 (Cloud Run) on GCP: avg usage 110.0/500.0 units (22.0%). Right-sizing could save ₹1,800,000/year.",
+        "affected_entity_id": "CLOUD-012",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "GCP",
+          "resource_type": "Cloud Run",
+          "capacity": 500.0,
+          "avg_usage": 110.0,
+          "peak_usage": 200.0,
+          "utilization": 0.22,
+          "monthly_cost": 250000.0
+        },
+        "potential_savings_inr": 1800000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-4DAD2B78",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "Redshift on AWS over-provisioned (22%)",
+        "description": "CLOUD-013 (Redshift) on AWS: avg usage 180.0/800.0 units (22.5%). Right-sizing could save ₹3,588,000/year.",
+        "affected_entity_id": "CLOUD-013",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "AWS",
+          "resource_type": "Redshift",
+          "capacity": 800.0,
+          "avg_usage": 180.0,
+          "peak_usage": 340.0,
+          "utilization": 0.225,
+          "monthly_cost": 520000.0
+        },
+        "potential_savings_inr": 3588000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "CLD-D6217F0A",
+        "category": "cloud_over_provisioning",
+        "severity": "medium",
+        "title": "Blob Storage on Azure over-provisioned (24%)",
+        "description": "CLOUD-014 (Blob Storage) on Azure: avg usage 1200.0/5000.0 units (24.0%). Right-sizing could save ₹729,600/year.",
+        "affected_entity_id": "CLOUD-014",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "provider": "Azure",
+          "resource_type": "Blob Storage",
+          "capacity": 5000.0,
+          "avg_usage": 1200.0,
+          "peak_usage": 1800.0,
+          "utilization": 0.24,
+          "monthly_cost": 95000.0
+        },
+        "potential_savings_inr": 729600.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "SLA-FEAB66BC",
+        "category": "sla_breach_risk",
+        "severity": "high",
+        "title": "SLA breach risk: Cloud Hosting (24h remaining)",
+        "description": "Cloud Hosting (Uptime): current=99.2 vs target=99.9 (percent). Breach in 24h. Penalty at risk: ₹500,000.",
+        "affected_entity_id": "SLA-001",
+        "affected_entity_type": "sla_metric",
+        "evidence": {
+          "service": "Cloud Hosting",
+          "vendor": "CloudNine Infra",
+          "metric": "Uptime",
+          "target": 99.9,
+          "current": 99.2,
+          "hours_to_breach": 24.0,
+          "penalty_inr": 500000.0
+        },
+        "potential_savings_inr": 500000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "SLA-FD39CB92",
+        "category": "sla_breach_risk",
+        "severity": "high",
+        "title": "SLA breach risk: CDN Service (37h remaining)",
+        "description": "CDN Service (Cache Hit Rate): current=88.0 vs target=95.0 (percent). Breach in 37h. Penalty at risk: ₹200,000.",
+        "affected_entity_id": "SLA-004",
+        "affected_entity_type": "sla_metric",
+        "evidence": {
+          "service": "CDN Service",
+          "vendor": "CloudSky Services",
+          "metric": "Cache Hit Rate",
+          "target": 95.0,
+          "current": 88.0,
+          "hours_to_breach": 37.0,
+          "penalty_inr": 200000.0
+        },
+        "potential_savings_inr": 200000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "SLA-9B842840",
+        "category": "sla_breach_risk",
+        "severity": "high",
+        "title": "SLA breach risk: Email Service (31h remaining)",
+        "description": "Email Service (Delivery Rate): current=97.2 vs target=99.5 (percent). Breach in 31h. Penalty at risk: ₹400,000.",
+        "affected_entity_id": "SLA-008",
+        "affected_entity_type": "sla_metric",
+        "evidence": {
+          "service": "Email Service",
+          "vendor": "Microsoft 365",
+          "metric": "Delivery Rate",
+          "target": 99.5,
+          "current": 97.2,
+          "hours_to_breach": 31.0,
+          "penalty_inr": 400000.0
+        },
+        "potential_savings_inr": 400000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "SLA-B903E0C2",
+        "category": "sla_breach_risk",
+        "severity": "critical",
+        "title": "SLA breach risk: DNS Service (19h remaining)",
+        "description": "DNS Service (Resolution Time): current=62.0 vs target=50.0 (milliseconds). Breach in 19h. Penalty at risk: ₹120,000.",
+        "affected_entity_id": "SLA-011",
+        "affected_entity_type": "sla_metric",
+        "evidence": {
+          "service": "DNS Service",
+          "vendor": "CloudNine Infra",
+          "metric": "Resolution Time",
+          "target": 50.0,
+          "current": 62.0,
+          "hours_to_breach": 19.0,
+          "penalty_inr": 120000.0
+        },
+        "potential_savings_inr": 120000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "ANM-6B60727C",
+        "category": "cost_anomaly",
+        "severity": "medium",
+        "title": "Cost anomaly: Sales Cloud (z=2.3)",
+        "description": "Sales Cloud monthly cost ₹500,000 is 2.3 standard deviations above mean (₹208,056). Review for potential renegotiation.",
+        "affected_entity_id": "SAAS-004",
+        "affected_entity_type": "saas_subscription",
+        "evidence": {
+          "cost": 500000.0,
+          "mean": 208055.56,
+          "std": 126443.21,
+          "z_score": 2.309
+        },
+        "potential_savings_inr": 3503333.333333333,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "issue_id": "ANM-4446F45B",
+        "category": "cost_anomaly",
+        "severity": "medium",
+        "title": "Cost anomaly: EC2 Compute on AWS (z=2.3)",
+        "description": "CLOUD-001 monthly cost ₹850,000 is 2.3σ above mean (₹370,333).",
+        "affected_entity_id": "CLOUD-001",
+        "affected_entity_type": "cloud_resource",
+        "evidence": {
+          "cost": 850000.0,
+          "mean": 370333.33,
+          "std": 211947.06,
+          "z_score": 2.263
+        },
+        "potential_savings_inr": 5756000.0,
+        "detected_at": "2026-03-25T06:26:36.434057"
+      }
+    ]
+  },
+  "decisions": {
+    "total_actions": 32,
+    "actions": [
+      {
+        "action_id": "ACT-F81D2919",
+        "issue_id": "CLD-21440C36",
+        "action_type": "reallocate_compute",
+        "title": "Right-size Virtual Machines on Azure",
+        "description": "Resize CLOUD-004 from 800.0 to 377.0 units. Maintains peak headroom while saving ₹5,508,000/year.",
+        "target_entity_id": "CLOUD-004",
+        "estimated_savings_inr": 5507999.999999999,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-21440C36]: Virtual Machines on Azure over-provisioned (23%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹5,508,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-9FD8DE93",
+        "issue_id": "SAAS-8CD6634B",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Sales Cloud to match usage",
+        "description": "Reduce Sales Cloud from 200 to 67 licenses. Save ₹3,990,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-004",
+        "estimated_savings_inr": 3990000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.2,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-8CD6634B]: Sales Cloud underutilized (34%). Category: saas_underutilization. Severity: medium. Action: downgrade_plan. Estimated savings: ₹3,990,000. ROI: 20.0x. Risk: 0.20. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-4DBD225D",
+        "issue_id": "CLD-1251916D",
+        "action_type": "reallocate_compute",
+        "title": "Right-size EC2 Compute on AWS",
+        "description": "Resize CLOUD-001 from 1000.0 to 754.0 units. Maintains peak headroom while saving ₹4,284,000/year.",
+        "target_entity_id": "CLOUD-001",
+        "estimated_savings_inr": 4284000.000000001,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-1251916D]: EC2 Compute on AWS over-provisioned (32%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹4,284,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-9C3254B0",
+        "issue_id": "CLD-13098682",
+        "action_type": "reallocate_compute",
+        "title": "Right-size Compute Engine on GCP",
+        "description": "Resize CLOUD-006 from 600.0 to 286.0 units. Maintains peak headroom while saving ₹4,104,000/year.",
+        "target_entity_id": "CLOUD-006",
+        "estimated_savings_inr": 4104000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-13098682]: Compute Engine on GCP over-provisioned (23%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹4,104,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-77DC83AE",
+        "issue_id": "ANM-4446F45B",
+        "action_type": "renegotiate_contract",
+        "title": "Renegotiate pricing for CLOUD-001",
+        "description": "Cost of CLOUD-001 (₹850,000/mo) is 2.3σ above peer mean. Renegotiation target: ₹1/mo saving ₹5,756,000/year.",
+        "target_entity_id": "CLOUD-001",
+        "estimated_savings_inr": 5756000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.35,
+        "confidence_score": 0.7,
+        "justification": "Issue [ANM-4446F45B]: Cost anomaly: EC2 Compute on AWS (z=2.3). Category: cost_anomaly. Severity: medium. Action: renegotiate_contract. Estimated savings: ₹5,756,000. ROI: 20.0x. Risk: 0.35. Confidence: 0.70.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.435291"
+      },
+      {
+        "action_id": "ACT-3E7B088D",
+        "issue_id": "CLD-4DAD2B78",
+        "action_type": "reallocate_compute",
+        "title": "Right-size Redshift on AWS",
+        "description": "Resize CLOUD-013 from 800.0 to 442.0 units. Maintains peak headroom while saving ₹3,588,000/year.",
+        "target_entity_id": "CLOUD-013",
+        "estimated_savings_inr": 3588000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-4DAD2B78]: Redshift on AWS over-provisioned (22%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹3,588,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-BEA849A7",
+        "issue_id": "DUP-11F53EB1",
+        "action_type": "consolidate_vendors",
+        "title": "Consolidate cloud hosting vendors",
+        "description": "Consolidate 3 vendors in cloud hosting to single provider. Negotiate volume discount. Estimated savings: ₹3,400,000/year.",
+        "target_entity_id": "PROC-002",
+        "estimated_savings_inr": 3400000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.85,
+        "justification": "Issue [DUP-11F53EB1]: Duplicate vendors in cloud hosting. Category: duplicate_vendor. Severity: high. Action: consolidate_vendors. Estimated savings: ₹3,400,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.85.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-50BE22CB",
+        "issue_id": "SAAS-CF9DD32B",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Creative Cloud to match usage",
+        "description": "Reduce Creative Cloud from 150 to 28 licenses. Save ₹2,562,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-006",
+        "estimated_savings_inr": 2562000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.1,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-CF9DD32B]: Creative Cloud underutilized (19%). Category: saas_underutilization. Severity: critical. Action: downgrade_plan. Estimated savings: ₹2,562,000. ROI: 20.0x. Risk: 0.10. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-73944D7D",
+        "issue_id": "CLD-22187CAA",
+        "action_type": "reallocate_compute",
+        "title": "Right-size EKS Cluster on AWS",
+        "description": "Resize CLOUD-008 from 300.0 to 195.0 units. Maintains peak headroom while saving ₹2,700,000/year.",
+        "target_entity_id": "CLOUD-008",
+        "estimated_savings_inr": 2700000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-22187CAA]: EKS Cluster on AWS over-provisioned (28%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹2,700,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-5057AAF8",
+        "issue_id": "CLD-71A4D6EA",
+        "action_type": "reallocate_compute",
+        "title": "Right-size AKS Cluster on Azure",
+        "description": "Resize CLOUD-010 from 400.0 to 234.0 units. Maintains peak headroom while saving ₹2,508,000/year.",
+        "target_entity_id": "CLOUD-010",
+        "estimated_savings_inr": 2508000.0000000005,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-71A4D6EA]: AKS Cluster on Azure over-provisioned (24%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹2,508,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-DC1AE0F5",
+        "issue_id": "ANM-6B60727C",
+        "action_type": "renegotiate_contract",
+        "title": "Renegotiate pricing for SAAS-004",
+        "description": "Cost of SAAS-004 (₹500,000/mo) is 2.3σ above peer mean. Renegotiation target: ₹1/mo saving ₹3,503,333/year.",
+        "target_entity_id": "SAAS-004",
+        "estimated_savings_inr": 3503333.333333333,
+        "roi_estimate": 20.0,
+        "risk_score": 0.35,
+        "confidence_score": 0.7,
+        "justification": "Issue [ANM-6B60727C]: Cost anomaly: Sales Cloud (z=2.3). Category: cost_anomaly. Severity: medium. Action: renegotiate_contract. Estimated savings: ₹3,503,333. ROI: 20.0x. Risk: 0.35. Confidence: 0.70.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-8CEA8DBC",
+        "issue_id": "DUP-35DF0CED",
+        "action_type": "consolidate_vendors",
+        "title": "Consolidate it consulting vendors",
+        "description": "Consolidate 2 vendors in it consulting to single provider. Negotiate volume discount. Estimated savings: ₹2,400,000/year.",
+        "target_entity_id": "PROC-001",
+        "estimated_savings_inr": 2400000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.85,
+        "justification": "Issue [DUP-35DF0CED]: Duplicate vendors in it consulting. Category: duplicate_vendor. Severity: high. Action: consolidate_vendors. Estimated savings: ₹2,400,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.85.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-F6661B8C",
+        "issue_id": "SAAS-AF26DEF4",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Jira Software to match usage",
+        "description": "Reduce Jira Software from 300 to 112 licenses. Save ₹1,692,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-002",
+        "estimated_savings_inr": 1692000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.2,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-AF26DEF4]: Jira Software underutilized (37%). Category: saas_underutilization. Severity: medium. Action: downgrade_plan. Estimated savings: ₹1,692,000. ROI: 20.0x. Risk: 0.20. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-6AD30379",
+        "issue_id": "CLD-1C8BDD32",
+        "action_type": "reallocate_compute",
+        "title": "Right-size Cloud Run on GCP",
+        "description": "Resize CLOUD-012 from 500.0 to 260.0 units. Maintains peak headroom while saving ₹1,800,000/year.",
+        "target_entity_id": "CLOUD-012",
+        "estimated_savings_inr": 1800000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-1C8BDD32]: Cloud Run on GCP over-provisioned (22%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹1,800,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-415D1F5B",
+        "issue_id": "SAAS-58B7B712",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Zoom Workplace to match usage",
+        "description": "Reduce Zoom Workplace from 400 to 156 licenses. Save ₹1,464,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-005",
+        "estimated_savings_inr": 1464000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.2,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-58B7B712]: Zoom Workplace underutilized (39%). Category: saas_underutilization. Severity: medium. Action: downgrade_plan. Estimated savings: ₹1,464,000. ROI: 20.0x. Risk: 0.20. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-C821A271",
+        "issue_id": "CLD-11B3C2B8",
+        "action_type": "reallocate_compute",
+        "title": "Right-size S3 Storage on AWS",
+        "description": "Resize CLOUD-003 from 10000.0 to 4160.0 units. Maintains peak headroom while saving ₹1,468,800/year.",
+        "target_entity_id": "CLOUD-003",
+        "estimated_savings_inr": 1468799.9999999998,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-11B3C2B8]: S3 Storage on AWS over-provisioned (21%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹1,468,800. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-8922F297",
+        "issue_id": "DUP-F9991D93",
+        "action_type": "consolidate_vendors",
+        "title": "Consolidate cybersecurity vendors",
+        "description": "Consolidate 2 vendors in cybersecurity to single provider. Negotiate volume discount. Estimated savings: ₹1,440,000/year.",
+        "target_entity_id": "PROC-005",
+        "estimated_savings_inr": 1440000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.85,
+        "justification": "Issue [DUP-F9991D93]: Duplicate vendors in cybersecurity. Category: duplicate_vendor. Severity: high. Action: consolidate_vendors. Estimated savings: ₹1,440,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.85.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-7EFAF67A",
+        "issue_id": "SAAS-8705B753",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Asana Business to match usage",
+        "description": "Reduce Asana Business from 150 to 42 licenses. Save ₹1,166,400/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-018",
+        "estimated_savings_inr": 1166400.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.15,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-8705B753]: Asana Business underutilized (28%). Category: saas_underutilization. Severity: high. Action: downgrade_plan. Estimated savings: ₹1,166,400. ROI: 20.0x. Risk: 0.15. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-C6159866",
+        "issue_id": "SAAS-B9F3964B",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Work OS to match usage",
+        "description": "Reduce Work OS from 180 to 52 licenses. Save ₹1,152,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-012",
+        "estimated_savings_inr": 1152000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.15,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-B9F3964B]: Work OS underutilized (29%). Category: saas_underutilization. Severity: high. Action: downgrade_plan. Estimated savings: ₹1,152,000. ROI: 20.0x. Risk: 0.15. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-C7DA0146",
+        "issue_id": "CLD-175DB8DC",
+        "action_type": "reallocate_compute",
+        "title": "Right-size ElastiCache on AWS",
+        "description": "Resize CLOUD-009 from 200.0 to 101.4 units. Maintains peak headroom while saving ₹1,171,200/year.",
+        "target_entity_id": "CLOUD-009",
+        "estimated_savings_inr": 1171200.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-175DB8DC]: ElastiCache on AWS over-provisioned (21%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹1,171,200. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-FFE493F0",
+        "issue_id": "SAAS-F42CBD08",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade eSignature to match usage",
+        "description": "Reduce eSignature from 75 to 22 licenses. Save ₹954,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-015",
+        "estimated_savings_inr": 954000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.15,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-F42CBD08]: eSignature underutilized (29%). Category: saas_underutilization. Severity: high. Action: downgrade_plan. Estimated savings: ₹954,000. ROI: 20.0x. Risk: 0.15. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-ECEF06C7",
+        "issue_id": "SAAS-14C2FD0B",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Notion Teams to match usage",
+        "description": "Reduce Notion Teams from 200 to 45 licenses. Save ₹930,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-010",
+        "estimated_savings_inr": 930000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.15,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-14C2FD0B]: Notion Teams underutilized (22%). Category: saas_underutilization. Severity: high. Action: downgrade_plan. Estimated savings: ₹930,000. ROI: 20.0x. Risk: 0.15. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-98B878BF",
+        "issue_id": "DUP-6BAE055E",
+        "action_type": "consolidate_vendors",
+        "title": "Consolidate data analytics vendors",
+        "description": "Consolidate 2 vendors in data analytics to single provider. Negotiate volume discount. Estimated savings: ₹1,080,000/year.",
+        "target_entity_id": "PROC-003",
+        "estimated_savings_inr": 1080000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.85,
+        "justification": "Issue [DUP-6BAE055E]: Duplicate vendors in data analytics. Category: duplicate_vendor. Severity: high. Action: consolidate_vendors. Estimated savings: ₹1,080,000. ROI: 20.0x. Risk: 0.25. Confidence: 0.85.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-687B1D8B",
+        "issue_id": "SAAS-EBABFD06",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Miro Business to match usage",
+        "description": "Reduce Miro Business from 120 to 25 licenses. Save ₹855,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-017",
+        "estimated_savings_inr": 855000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.15,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-EBABFD06]: Miro Business underutilized (21%). Category: saas_underutilization. Severity: high. Action: downgrade_plan. Estimated savings: ₹855,000. ROI: 20.0x. Risk: 0.15. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-34F180CF",
+        "issue_id": "SAAS-DA1C4B0C",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Grammarly Business to match usage",
+        "description": "Reduce Grammarly Business from 200 to 34 licenses. Save ₹796,800/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-016",
+        "estimated_savings_inr": 796800.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.1,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-DA1C4B0C]: Grammarly Business underutilized (17%). Category: saas_underutilization. Severity: critical. Action: downgrade_plan. Estimated savings: ₹796,800. ROI: 20.0x. Risk: 0.10. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-EBECD660",
+        "issue_id": "SAAS-070DEE32",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Figma Enterprise to match usage",
+        "description": "Reduce Figma Enterprise from 80 to 31 licenses. Save ₹882,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-008",
+        "estimated_savings_inr": 882000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.2,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-070DEE32]: Figma Enterprise underutilized (39%). Category: saas_underutilization. Severity: medium. Action: downgrade_plan. Estimated savings: ₹882,000. ROI: 20.0x. Risk: 0.20. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-A9933F54",
+        "issue_id": "CLD-D6217F0A",
+        "action_type": "reallocate_compute",
+        "title": "Right-size Blob Storage on Azure",
+        "description": "Resize CLOUD-014 from 5000.0 to 2340.0 units. Maintains peak headroom while saving ₹729,600/year.",
+        "target_entity_id": "CLOUD-014",
+        "estimated_savings_inr": 729600.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.25,
+        "confidence_score": 0.88,
+        "justification": "Issue [CLD-D6217F0A]: Blob Storage on Azure over-provisioned (24%). Category: cloud_over_provisioning. Severity: medium. Action: reallocate_compute. Estimated savings: ₹729,600. ROI: 20.0x. Risk: 0.25. Confidence: 0.88.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-5ADF2CE1",
+        "issue_id": "SLA-FEAB66BC",
+        "action_type": "trigger_escalation",
+        "title": "Escalate SLA risk: Cloud Hosting",
+        "description": "SLA breach imminent for Cloud Hosting (24h left). Escalate to vendor CloudNine Infra. Penalty at risk: ₹500,000.",
+        "target_entity_id": "SLA-001",
+        "estimated_savings_inr": 500000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.1,
+        "confidence_score": 0.95,
+        "justification": "Issue [SLA-FEAB66BC]: SLA breach risk: Cloud Hosting (24h remaining). Category: sla_breach_risk. Severity: high. Action: trigger_escalation. Estimated savings: ₹500,000. ROI: 20.0x. Risk: 0.10. Confidence: 0.95.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-197C00C8",
+        "issue_id": "SAAS-15E82B40",
+        "action_type": "downgrade_plan",
+        "title": "Downgrade Canva Teams to match usage",
+        "description": "Reduce Canva Teams from 100 to 18 licenses. Save ₹492,000/year by right-sizing the plan.",
+        "target_entity_id": "SAAS-014",
+        "estimated_savings_inr": 492000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.1,
+        "confidence_score": 0.9,
+        "justification": "Issue [SAAS-15E82B40]: Canva Teams underutilized (18%). Category: saas_underutilization. Severity: critical. Action: downgrade_plan. Estimated savings: ₹492,000. ROI: 20.0x. Risk: 0.10. Confidence: 0.90.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-D254960E",
+        "issue_id": "SLA-9B842840",
+        "action_type": "trigger_escalation",
+        "title": "Escalate SLA risk: Email Service",
+        "description": "SLA breach imminent for Email Service (31h left). Escalate to vendor Microsoft 365. Penalty at risk: ₹400,000.",
+        "target_entity_id": "SLA-008",
+        "estimated_savings_inr": 400000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.1,
+        "confidence_score": 0.95,
+        "justification": "Issue [SLA-9B842840]: SLA breach risk: Email Service (31h remaining). Category: sla_breach_risk. Severity: high. Action: trigger_escalation. Estimated savings: ₹400,000. ROI: 20.0x. Risk: 0.10. Confidence: 0.95.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-D0FA349C",
+        "issue_id": "SLA-FD39CB92",
+        "action_type": "trigger_escalation",
+        "title": "Escalate SLA risk: CDN Service",
+        "description": "SLA breach imminent for CDN Service (37h left). Escalate to vendor CloudSky Services. Penalty at risk: ₹200,000.",
+        "target_entity_id": "SLA-004",
+        "estimated_savings_inr": 200000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.1,
+        "confidence_score": 0.95,
+        "justification": "Issue [SLA-FD39CB92]: SLA breach risk: CDN Service (37h remaining). Category: sla_breach_risk. Severity: high. Action: trigger_escalation. Estimated savings: ₹200,000. ROI: 20.0x. Risk: 0.10. Confidence: 0.95.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      },
+      {
+        "action_id": "ACT-E49BA038",
+        "issue_id": "SLA-B903E0C2",
+        "action_type": "trigger_escalation",
+        "title": "Escalate SLA risk: DNS Service",
+        "description": "SLA breach imminent for DNS Service (19h left). Escalate to vendor CloudNine Infra. Penalty at risk: ₹120,000.",
+        "target_entity_id": "SLA-011",
+        "estimated_savings_inr": 120000.0,
+        "roi_estimate": 20.0,
+        "risk_score": 0.05,
+        "confidence_score": 0.95,
+        "justification": "Issue [SLA-B903E0C2]: SLA breach risk: DNS Service (19h remaining). Category: sla_breach_risk. Severity: critical. Action: trigger_escalation. Estimated savings: ₹120,000. ROI: 20.0x. Risk: 0.05. Confidence: 0.95.",
+        "status": "executed",
+        "created_at": "2026-03-25T06:26:36.434057"
+      }
+    ]
+  },
+  "execution": {
+    "total_executions": 32,
+    "logs": [
+      {
+        "execution_id": "EXEC-8ADCF870",
+        "action_id": "ACT-F81D2919",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-004",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-004",
+          "estimated_savings": 5507999.999999999,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-004 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-41FA6A6F",
+        "action_id": "ACT-9FD8DE93",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-004",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-004",
+          "estimated_savings": 3990000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-004",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 332500.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-0401582B",
+        "action_id": "ACT-4DBD225D",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-001",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-001",
+          "estimated_savings": 4284000.000000001,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-001 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-3B46C121",
+        "action_id": "ACT-9C3254B0",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-006",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-006",
+          "estimated_savings": 4104000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-006 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-5E636F18",
+        "action_id": "ACT-77DC83AE",
+        "action_type": "renegotiate_contract",
+        "status": "verified",
+        "target_entity_id": "CLOUD-001",
+        "request_payload": {
+          "action_type": "renegotiate_contract",
+          "target": "CLOUD-001",
+          "estimated_savings": 5756000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Renegotiation request sent for CLOUD-001",
+          "proposal_id": "NEG-6CFFF2",
+          "target_reduction_pct": 15
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-765437E7",
+        "action_id": "ACT-3E7B088D",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-013",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-013",
+          "estimated_savings": 3588000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-013 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-FF1A696C",
+        "action_id": "ACT-BEA849A7",
+        "action_type": "consolidate_vendors",
+        "status": "verified",
+        "target_entity_id": "PROC-002",
+        "request_payload": {
+          "action_type": "consolidate_vendors",
+          "target": "PROC-002",
+          "estimated_savings": 3400000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Vendor consolidation initiated for PROC-002",
+          "consolidation_plan": "transition_to_primary_vendor",
+          "estimated_completion": "2026-06-23T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-E41E0EFA",
+        "action_id": "ACT-50BE22CB",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-006",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-006",
+          "estimated_savings": 2562000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-006",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 213500.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-0B4178CD",
+        "action_id": "ACT-73944D7D",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-008",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-008",
+          "estimated_savings": 2700000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-008 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-6E4C2572",
+        "action_id": "ACT-5057AAF8",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-010",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-010",
+          "estimated_savings": 2508000.0000000005,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-010 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-F9CD3EE7",
+        "action_id": "ACT-DC1AE0F5",
+        "action_type": "renegotiate_contract",
+        "status": "verified",
+        "target_entity_id": "SAAS-004",
+        "request_payload": {
+          "action_type": "renegotiate_contract",
+          "target": "SAAS-004",
+          "estimated_savings": 3503333.333333333,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Renegotiation request sent for SAAS-004",
+          "proposal_id": "NEG-2E18DC",
+          "target_reduction_pct": 15
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-A2404875",
+        "action_id": "ACT-8CEA8DBC",
+        "action_type": "consolidate_vendors",
+        "status": "verified",
+        "target_entity_id": "PROC-001",
+        "request_payload": {
+          "action_type": "consolidate_vendors",
+          "target": "PROC-001",
+          "estimated_savings": 2400000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Vendor consolidation initiated for PROC-001",
+          "consolidation_plan": "transition_to_primary_vendor",
+          "estimated_completion": "2026-06-23T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-1CCC34A0",
+        "action_id": "ACT-F6661B8C",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-002",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-002",
+          "estimated_savings": 1692000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-002",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 141000.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-5CFDCE22",
+        "action_id": "ACT-6AD30379",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-012",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-012",
+          "estimated_savings": 1800000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-012 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-7C399EA4",
+        "action_id": "ACT-415D1F5B",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-005",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-005",
+          "estimated_savings": 1464000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-005",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 122000.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-2D7E2EE8",
+        "action_id": "ACT-C821A271",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-003",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-003",
+          "estimated_savings": 1468799.9999999998,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-003 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-1A592714",
+        "action_id": "ACT-8922F297",
+        "action_type": "consolidate_vendors",
+        "status": "verified",
+        "target_entity_id": "PROC-005",
+        "request_payload": {
+          "action_type": "consolidate_vendors",
+          "target": "PROC-005",
+          "estimated_savings": 1440000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Vendor consolidation initiated for PROC-005",
+          "consolidation_plan": "transition_to_primary_vendor",
+          "estimated_completion": "2026-06-23T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-93910A05",
+        "action_id": "ACT-7EFAF67A",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-018",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-018",
+          "estimated_savings": 1166400.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-018",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 97200.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-4FDA879E",
+        "action_id": "ACT-C6159866",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-012",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-012",
+          "estimated_savings": 1152000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-012",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 96000.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-FFD4CF26",
+        "action_id": "ACT-C7DA0146",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-009",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-009",
+          "estimated_savings": 1171200.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-009 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-E2EFC330",
+        "action_id": "ACT-FFE493F0",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-015",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-015",
+          "estimated_savings": 954000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-015",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 79500.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-D80F1F32",
+        "action_id": "ACT-ECEF06C7",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-010",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-010",
+          "estimated_savings": 930000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-010",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 77500.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-163B58A0",
+        "action_id": "ACT-98B878BF",
+        "action_type": "consolidate_vendors",
+        "status": "verified",
+        "target_entity_id": "PROC-003",
+        "request_payload": {
+          "action_type": "consolidate_vendors",
+          "target": "PROC-003",
+          "estimated_savings": 1080000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Vendor consolidation initiated for PROC-003",
+          "consolidation_plan": "transition_to_primary_vendor",
+          "estimated_completion": "2026-06-23T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-4C72EE63",
+        "action_id": "ACT-687B1D8B",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-017",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-017",
+          "estimated_savings": 855000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-017",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 71250.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-518380FF",
+        "action_id": "ACT-34F180CF",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-016",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-016",
+          "estimated_savings": 796800.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-016",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 66400.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-E85DD7F5",
+        "action_id": "ACT-EBECD660",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-008",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-008",
+          "estimated_savings": 882000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-008",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 73500.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-25E3C6FA",
+        "action_id": "ACT-A9933F54",
+        "action_type": "reallocate_compute",
+        "status": "verified",
+        "target_entity_id": "CLOUD-014",
+        "request_payload": {
+          "action_type": "reallocate_compute",
+          "target": "CLOUD-014",
+          "estimated_savings": 729600.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Resource CLOUD-014 right-sized",
+          "new_capacity": "optimized",
+          "effective_date": "2026-03-25T06:26:36.435291"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-9D7A2A13",
+        "action_id": "ACT-5ADF2CE1",
+        "action_type": "trigger_escalation",
+        "status": "verified",
+        "target_entity_id": "SLA-001",
+        "request_payload": {
+          "action_type": "trigger_escalation",
+          "target": "SLA-001",
+          "estimated_savings": 500000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "SLA escalation triggered for SLA-001",
+          "ticket_id": "ESC-FA4186",
+          "priority": "critical",
+          "assigned_to": "vendor_account_manager"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-6902A373",
+        "action_id": "ACT-197C00C8",
+        "action_type": "downgrade_plan",
+        "status": "verified",
+        "target_entity_id": "SAAS-014",
+        "request_payload": {
+          "action_type": "downgrade_plan",
+          "target": "SAAS-014",
+          "estimated_savings": 492000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "Plan downgraded for SAAS-014",
+          "new_tier": "reduced",
+          "effective_date": "2026-03-25T06:26:36.435291",
+          "monthly_savings_inr": 41000.0
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-C538453F",
+        "action_id": "ACT-D254960E",
+        "action_type": "trigger_escalation",
+        "status": "verified",
+        "target_entity_id": "SLA-008",
+        "request_payload": {
+          "action_type": "trigger_escalation",
+          "target": "SLA-008",
+          "estimated_savings": 400000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "SLA escalation triggered for SLA-008",
+          "ticket_id": "ESC-AFE751",
+          "priority": "critical",
+          "assigned_to": "vendor_account_manager"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-C075194B",
+        "action_id": "ACT-D0FA349C",
+        "action_type": "trigger_escalation",
+        "status": "verified",
+        "target_entity_id": "SLA-004",
+        "request_payload": {
+          "action_type": "trigger_escalation",
+          "target": "SLA-004",
+          "estimated_savings": 200000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "SLA escalation triggered for SLA-004",
+          "ticket_id": "ESC-1031EB",
+          "priority": "critical",
+          "assigned_to": "vendor_account_manager"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      },
+      {
+        "execution_id": "EXEC-B6C0E76B",
+        "action_id": "ACT-E49BA038",
+        "action_type": "trigger_escalation",
+        "status": "verified",
+        "target_entity_id": "SLA-011",
+        "request_payload": {
+          "action_type": "trigger_escalation",
+          "target": "SLA-011",
+          "estimated_savings": 120000.0,
+          "timestamp": "2026-03-25T06:26:36.435291"
+        },
+        "response_payload": {
+          "status": "success",
+          "message": "SLA escalation triggered for SLA-011",
+          "ticket_id": "ESC-0637DC",
+          "priority": "critical",
+          "assigned_to": "vendor_account_manager"
+        },
+        "attempts": 1,
+        "executed_at": "2026-03-25T06:26:36.435291",
+        "verified": true,
+        "verification_notes": "All verification checks passed",
+        "error_message": ""
+      }
+    ]
+  },
+  "impact": {
+    "report_id": "RPT-86589741",
+    "cycle_id": 58,
+    "generated_at": "2026-03-25T06:26:36.436293",
+    "total_issues_detected": 32,
+    "total_actions_executed": 32,
+    "total_actions_verified": 32,
+    "realized_savings_inr": 5198094.44,
+    "projected_annual_savings_inr": 62377133.33,
+    "avoided_penalties_inr": 1220000.0,
+    "total_impact_inr": 68795227.78,
+    "breakdown": [
+      {
+        "action_id": "ACT-F81D2919",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size Virtual Machines on Azure",
+        "monthly_savings_inr": 459000.0,
+        "annual_savings_inr": 5508000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-9FD8DE93",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Sales Cloud to match usage",
+        "monthly_savings_inr": 332500.0,
+        "annual_savings_inr": 3990000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-4DBD225D",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size EC2 Compute on AWS",
+        "monthly_savings_inr": 357000.0,
+        "annual_savings_inr": 4284000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-9C3254B0",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size Compute Engine on GCP",
+        "monthly_savings_inr": 342000.0,
+        "annual_savings_inr": 4104000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-77DC83AE",
+        "type": "cost_reduction",
+        "category": "cost_anomaly",
+        "description": "Renegotiate pricing for CLOUD-001",
+        "monthly_savings_inr": 479666.67,
+        "annual_savings_inr": 5756000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-3E7B088D",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size Redshift on AWS",
+        "monthly_savings_inr": 299000.0,
+        "annual_savings_inr": 3588000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-BEA849A7",
+        "type": "cost_reduction",
+        "category": "duplicate_vendor",
+        "description": "Consolidate cloud hosting vendors",
+        "monthly_savings_inr": 283333.33,
+        "annual_savings_inr": 3400000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-50BE22CB",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Creative Cloud to match usage",
+        "monthly_savings_inr": 213500.0,
+        "annual_savings_inr": 2562000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-73944D7D",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size EKS Cluster on AWS",
+        "monthly_savings_inr": 225000.0,
+        "annual_savings_inr": 2700000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-5057AAF8",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size AKS Cluster on Azure",
+        "monthly_savings_inr": 209000.0,
+        "annual_savings_inr": 2508000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-DC1AE0F5",
+        "type": "cost_reduction",
+        "category": "cost_anomaly",
+        "description": "Renegotiate pricing for SAAS-004",
+        "monthly_savings_inr": 291944.44,
+        "annual_savings_inr": 3503333.33,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-8CEA8DBC",
+        "type": "cost_reduction",
+        "category": "duplicate_vendor",
+        "description": "Consolidate it consulting vendors",
+        "monthly_savings_inr": 200000.0,
+        "annual_savings_inr": 2400000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-F6661B8C",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Jira Software to match usage",
+        "monthly_savings_inr": 141000.0,
+        "annual_savings_inr": 1692000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-6AD30379",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size Cloud Run on GCP",
+        "monthly_savings_inr": 150000.0,
+        "annual_savings_inr": 1800000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-415D1F5B",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Zoom Workplace to match usage",
+        "monthly_savings_inr": 122000.0,
+        "annual_savings_inr": 1464000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-C821A271",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size S3 Storage on AWS",
+        "monthly_savings_inr": 122400.0,
+        "annual_savings_inr": 1468800.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-8922F297",
+        "type": "cost_reduction",
+        "category": "duplicate_vendor",
+        "description": "Consolidate cybersecurity vendors",
+        "monthly_savings_inr": 120000.0,
+        "annual_savings_inr": 1440000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-7EFAF67A",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Asana Business to match usage",
+        "monthly_savings_inr": 97200.0,
+        "annual_savings_inr": 1166400.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-C6159866",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Work OS to match usage",
+        "monthly_savings_inr": 96000.0,
+        "annual_savings_inr": 1152000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-C7DA0146",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size ElastiCache on AWS",
+        "monthly_savings_inr": 97600.0,
+        "annual_savings_inr": 1171200.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-FFE493F0",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade eSignature to match usage",
+        "monthly_savings_inr": 79500.0,
+        "annual_savings_inr": 954000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-ECEF06C7",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Notion Teams to match usage",
+        "monthly_savings_inr": 77500.0,
+        "annual_savings_inr": 930000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-98B878BF",
+        "type": "cost_reduction",
+        "category": "duplicate_vendor",
+        "description": "Consolidate data analytics vendors",
+        "monthly_savings_inr": 90000.0,
+        "annual_savings_inr": 1080000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-687B1D8B",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Miro Business to match usage",
+        "monthly_savings_inr": 71250.0,
+        "annual_savings_inr": 855000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-34F180CF",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Grammarly Business to match usage",
+        "monthly_savings_inr": 66400.0,
+        "annual_savings_inr": 796800.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-EBECD660",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Figma Enterprise to match usage",
+        "monthly_savings_inr": 73500.0,
+        "annual_savings_inr": 882000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-A9933F54",
+        "type": "cost_reduction",
+        "category": "cloud_over_provisioning",
+        "description": "Right-size Blob Storage on Azure",
+        "monthly_savings_inr": 60800.0,
+        "annual_savings_inr": 729600.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-5ADF2CE1",
+        "type": "avoided_penalty",
+        "category": "sla_breach_risk",
+        "description": "Escalate SLA risk: Cloud Hosting",
+        "amount_inr": 500000.0,
+        "period": "one-time"
+      },
+      {
+        "action_id": "ACT-197C00C8",
+        "type": "cost_reduction",
+        "category": "saas_underutilization",
+        "description": "Downgrade Canva Teams to match usage",
+        "monthly_savings_inr": 41000.0,
+        "annual_savings_inr": 492000.0,
+        "period": "12 months"
+      },
+      {
+        "action_id": "ACT-D254960E",
+        "type": "avoided_penalty",
+        "category": "sla_breach_risk",
+        "description": "Escalate SLA risk: Email Service",
+        "amount_inr": 400000.0,
+        "period": "one-time"
+      },
+      {
+        "action_id": "ACT-D0FA349C",
+        "type": "avoided_penalty",
+        "category": "sla_breach_risk",
+        "description": "Escalate SLA risk: CDN Service",
+        "amount_inr": 200000.0,
+        "period": "one-time"
+      },
+      {
+        "action_id": "ACT-E49BA038",
+        "type": "avoided_penalty",
+        "category": "sla_breach_risk",
+        "description": "Escalate SLA risk: DNS Service",
+        "amount_inr": 120000.0,
+        "period": "one-time"
+      }
+    ],
+    "summary": "Realized monthly savings: ₹5,198,094 | Projected annual savings: ₹62,377,133 | SLA penalties avoided: ₹1,220,000 | Total financial impact: ₹68,795,228"
+  },
+  "human_readable_summary": "======================================================================\n  ACOE AUTONOMOUS CYCLE REPORT — Cycle #58\n  Generated: 2026-03-25 06:26:36 UTC\n======================================================================\n\n📊 DETECTION SUMMARY\n   Total issues detected: 32\n   • saas_underutilization: 12\n   • cloud_over_provisioning: 10\n   • duplicate_vendor: 4\n   • sla_breach_risk: 4\n   • cost_anomaly: 2\n\n🎯 DECISION SUMMARY\n   Actions planned: 32\n   • Right-size Virtual Machines on Azure → ₹5,508,000 savings\n   • Downgrade Sales Cloud to match usage → ₹3,990,000 savings\n   • Right-size EC2 Compute on AWS → ₹4,284,000 savings\n   • Right-size Compute Engine on GCP → ₹4,104,000 savings\n   • Renegotiate pricing for CLOUD-001 → ₹5,756,000 savings\n\n⚡ EXECUTION SUMMARY\n   Executed: 32/32\n\n💰 FINANCIAL IMPACT\n   Realized savings:  ₹5,198,094\n   Projected annual:  ₹62,377,133\n   Avoided penalties: ₹1,220,000\n   ─────────────────────────────\n   TOTAL IMPACT:      ₹68,795,228\n\n======================================================================"
+}
