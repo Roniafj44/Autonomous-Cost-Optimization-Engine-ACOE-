@@ -1,141 +1,130 @@
 # ACOE — Autonomous Cost Optimization Engine
 
-A fully autonomous, self-running, production-grade multi-agent system that continuously detects enterprise cost inefficiencies, decides optimal actions, executes them, and reports quantified financial impact in ₹ — all without human intervention.
+<div align="center">
+  <img src="https://img.shields.io/badge/Status-Autonomous-success?style=for-the-badge&logo=ai" alt="Status: Autonomous">
+  <img src="https://img.shields.io/badge/Language-Python_3.9+-blue?style=for-the-badge&logo=python" alt="Python 3.9+">
+  <img src="https://img.shields.io/badge/Database-SQLite-003B57?style=for-the-badge&logo=sqlite" alt="SQLite">
+  <img src="https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit" alt="Streamlit">
+  <br>
+  <em>A fully autonomous, self-running, production-grade multi-agent system that continuously detects enterprise cost inefficiencies, decides optimal actions, executes them, and reports quantified financial impact.</em>
+</div>
 
-## Architecture
+---
 
+## 🏗️ Architecture & Core Workflow
+
+The system is built on an idempotent, self-healing **7-stage multi-agent pipeline**. It autonomously evaluates corporate data environments (cloud, SaaS, procurement contracts) at a regular cadence, executing fixes strictly driven by dynamic Return on Investment (ROI) and heuristic rulesets.
+
+### Execution Lifecycle
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#0d1b2a', 'primaryTextColor': '#fff', 'primaryBorderColor': '#1b263b', 'lineColor': '#415a77', 'secondaryColor': '#778da9', 'tertiaryColor': '#e0e1dd'}}}%%
+flowchart TD
+    %% Define Node Styles
+    classDef agent fill:#0f4c81,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef data fill:#2d6a4f,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef output fill:#7b2cbf,stroke:#fff,stroke-width:2px,color:#fff;
+
+    %% Workflow Nodes
+    A[Ingestion Agent]:::agent --> B[Detection Agent]:::agent;
+    B --> C[Decision Agent]:::agent;
+    C --> D[Execution API Engine]:::agent;
+    D --> E[Verification Layer]:::agent;
+    E --> F[Audit & Logging]:::agent;
+    F --> G[Financial Impact Report]:::agent;
+    G -.->|Wait 60s -> Next Cycle| A;
+    
+    %% Input Sources
+    subgraph Data Sources
+      DS1[(Procurement)]:::data
+      DS2[(SaaS Subs)]:::data
+      DS3[(Cloud Usage)]:::data
+      DS4[(SLA Metrics)]:::data
+    end
+    
+    DS1 -.-> A
+    DS2 -.-> A
+    DS3 -.-> A
+    DS4 -.-> A
+
+    %% Outputs & State
+    subgraph Outputs
+      DB[(SQLite Persisted State)]:::output
+      Dash[Streamlit Dashboard]:::output
+      API[FastAPI Server]:::output
+    end
+    
+    E -.-> DB
+    F -.-> DB
+    G -.-> Dash
+    DB -.-> API
 ```
-INGEST → DETECT → DECIDE → ACT → VERIFY → LOG → REPORT → REPEAT
-```
 
-### Multi-Agent System
+---
 
-| Agent | Responsibility |
-|-------|---------------|
-| **Ingestion** | Load CSV/JSON enterprise data, validate, normalize |
-| **Detection** | Rule-based + z-score anomaly detection for 5 issue types |
-| **Decision** | Map issues → actions with ROI, risk, confidence scoring |
-| **Execution** | Mock API execution with retry (3x exponential backoff) + idempotency |
-| **Verification** | Compare expected vs actual outcomes, flag mismatches |
-| **Audit** | Structured JSON + human-readable logs for every cycle |
-| **Impact** | Compute realized, projected savings + avoided SLA penalties in ₹ |
+## 📂 Project Details: File Structure & Components
 
-### Detection Capabilities
+The **ACOE** platform acts as a unified orchestrator overseeing granular agent modules, configuration centers, and API layers to manage cost-recovery operations seamlessly without human mediation.
 
-- **Duplicate Vendors** — Same service category, multiple providers
-- **SaaS Underutilization** — Active users below threshold (default: 40%)
-- **Cloud Over-provisioning** — Avg usage well below capacity (default: 35%)
-- **SLA Breach Risk** — Time-to-breach estimation (default: 48h window)
-- **Cost Anomalies** — Z-score outliers above threshold (default: 2.0σ)
+| Directory / File | Description & Usage |
+| :--- | :--- |
+| `run_acoe.py` | ⚡ **Unified Judge-Ready Demonstration Entry Point**. Runs an immediate, colorized 7-stage pipeline outputting a visual `BEFORE vs AFTER` terminal comparison before falling back to the autonomous background loop. |
+| `main.py` | ⚙️ **Standard Daemon Entry Point**. Starts the unified background process, attaching the internal scheduler to run agents without the dramatic CLI visualization output. |
+| `process_manager.py` | **Core Supervisor**. Establishes the `FastAPI` server simultaneously, configures structured logging, sets up exponential backoff schedulers, and connects circuit breakers. |
+| `state_manager.py` | **SQLite Data Abstraction**. Safely maintains records of execution logs, duplicate/idempotency guarantees (so an action isn't run twice), metrics, and impact reports across restarts. |
+| `metrics.py` & `safety.py`| **Observability Constraints**. Hard constraints mapping boundary conditions that the agents cannot break (e.g. `maximum INR spending limit`, `critical protected infrastructure domains`). |
+| `circuit_breaker.py` | **Fault Isolation Model**. Handles external failures safely. If mock endpoints begin blocking connections, the orchestrator backs down automatically protecting loop continuity. |
+| `config.yaml` | **Configuration**. Primary driver for algorithmic thresholds like `z-score` limits, cycle intervals (in seconds), and budget ceilings. |
+| `dashboard/app.py` | **Visual UI Application**. A Streamlit frontend dashboard giving real-time visibility into cost recoveries, graphs, and current system cycles via terminal `localhost:8501`. |
+| `api/server.py` | **REST Integrations**. Exposes programmatic inspection paths covering `/status`, `/ingest`, `/analyze`, `/act`, and direct `/report` access locally on port `8000`. |
+| `data/` | **Synthetic Environments**. Holds mock, deterministic representations of enterprise environments containing bloated SaaS licenses and idle Cloud clusters. |
 
-## Quick Start
+### 🤖 The Agent Modules (`agents/`)
 
-### 1. Install Dependencies
+Each file inside the `agents/` directory functions as an autonomous microservice handling a singular execution logic step within the loop.
+- **`ingestion.py`**: Normalizes local CSV inputs into schema models strictly enforced by `Pydantic`.
+- **`detection.py`**: Evaluates active arrays to trigger heuristic threshold breaks and variance standard deviations (z-scores outliers) to formulate "Anomalies".
+- **`decision.py`**: Risk vs Reward logic engine. Assigns algorithmic ROI tags and decides which simulated API execution script must run.
+- **`execution.py`**: The "Actuator". Performs simulated `POST`, `PATCH`, `DELETE` events handling retries internally with backing-off techniques.
+- **`verification.py`**: A cross-check validator guaranteeing the execution output corresponds actively with the newly ingested state values.
+- **`audit.py`**: Injects an immutable trace back to the SQLite ledger defending *why* a decision passed execution.
+- **`impact.py`**: Compiles string-aggregated financial values (`INR`) showcasing exactly how much active runway usage was saved explicitly.
 
+---
+
+## 🚀 Step-by-Step Running Guide (Error-Free)
+
+**Prerequisites**: Python `3.9` or higher natively installed. You do not need any external databases or cache servers, as the platform wraps an SQLite implementation entirely within itself.
+
+### Step 1: Install Python Dependencies
+Open your preferred terminal, navigate inside the foundational `ACOE/` root directory and pull via pip.
 ```bash
-cd ACOE
 pip install -r requirements.txt
 ```
 
-### 2. Run Autonomous Mode (One Command)
+### Step 2: Run the Demonstration Layer (Highly Recommended)
+We recommend launching the overarching `run_acoe.py` script. The demonstration mode immediately analyzes the mock CSV environments, maps errors, prints out an incredibly clean `BEFORE vs AFTER` cost assessment in your terminal, and smoothly slides into standard continuous loop mode.
+
+```bash
+python run_acoe.py
+```
+> [!NOTE] 
+> No human input or confirmation is required at any time. The process will ingest, analyze, fix, and report anomalies automatically out of the box. Output is visually color-coded dynamically. To exit cleanly, press `Ctrl+C`.
+
+### Step 3: Launch Observability Visualizations (Optional)
+If you wish to view graphs and cost assessments while the CLI script runs natively in the background, open a **separate concurrent terminal** tab and trigger the dashboard.
+```bash
+streamlit run dashboard/app.py
+```
+*(Available locally at `http://localhost:8501`).*
+
+---
+
+### Alternative: Standard Daemon Configuration
+If deploying towards a VM environment, or running unattended without needing the visual console interface, run the core main script directly:
 
 ```bash
 python main.py
 ```
 
-This starts:
-- **Autonomous orchestrator loop** (60s interval, configurable)
-- **FastAPI API server** on `http://localhost:8000`
-
-The system immediately begins its first cycle: ingesting data, detecting issues, executing corrective actions, and reporting savings.
-
-### 3. Launch Dashboard (Optional)
-
-```bash
-streamlit run dashboard/app.py
-```
-
-Opens a read-only observability dashboard at `http://localhost:8501`.
-
-## API Endpoints
-
-| Endpoint | Description |
-|----------|-------------|
-| `GET /status` | System health, cycle count, uptime |
-| `GET /ingest` | Latest ingested data summary |
-| `GET /analyze` | Detected inefficiencies with severity |
-| `GET /act` | Executed actions + verification status |
-| `GET /report` | Financial impact report with ₹ savings |
-| `GET /docs` | Swagger UI |
-
-## Configuration
-
-Edit `config.py` to adjust:
-
-```python
-LOOP_INTERVAL_SECONDS = 60          # Cycle frequency
-SAAS_UTILIZATION_THRESHOLD = 0.40   # Flag if < 40% utilization
-CLOUD_UTILIZATION_THRESHOLD = 0.35  # Flag if < 35% utilization
-SLA_BREACH_WINDOW_HOURS = 48        # Flag if breach < 48h away
-APPROVAL_GATE_ENABLED = False       # Set True for manual approval
-DEMO_MODE = True                    # Deterministic outputs
-```
-
-## Sample Output
-
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  CYCLE #1 — COMPLETED in 2.3s
-  Issues: 22 | Actions: 18
-  Savings: ₹45,80,000 | Errors: 0
-  Cumulative: ₹45,80,000
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Unused Licenses: 120
-Action: Downgrade Plan
-Savings: ₹3,60,000/year
-
-SLA Risk Avoided:
-Penalty Saved: ₹1,20,000
-```
-
-## Project Structure
-
-```
-ACOE/
-├── main.py                 # Daemon entry point
-├── config.py               # Central configuration
-├── requirements.txt
-├── data/                   # Synthetic datasets
-│   ├── procurement.csv
-│   ├── saas_subscriptions.csv
-│   ├── cloud_usage.csv
-│   └── sla_metrics.csv
-├── models/
-│   └── schemas.py          # Pydantic data models
-├── agents/
-│   ├── ingestion.py        # Data ingestion
-│   ├── detection.py        # Anomaly + rule detection
-│   ├── decision.py         # Action planning
-│   ├── execution.py        # Mock API execution
-│   ├── verification.py     # Outcome verification
-│   ├── audit.py            # Audit logging
-│   └── impact.py           # Financial impact
-├── orchestrator/
-│   └── engine.py           # Autonomous pipeline
-├── api/
-│   └── server.py           # FastAPI endpoints
-├── dashboard/
-│   └── app.py              # Streamlit dashboard
-├── logs/                   # Runtime audit logs
-└── state/                  # Persistent state
-```
-
-## Key Design Principles
-
-- **Zero human-in-the-loop** after `python main.py`
-- **Self-healing** — catches all exceptions, logs, continues
-- **Idempotent execution** — dedup keys prevent re-execution
-- **State persistence** — survives restarts via JSON state file
-- **Deterministic** — reproducible results in demo mode
-- **Full auditability** — every decision logged with reasoning
+While running, interact with the platform programmatically through standard `Swagger UI` integration at `http://localhost:8000/docs`. By default, the system reschedules iterations every 60 seconds unless overriden via `config.yaml`.
