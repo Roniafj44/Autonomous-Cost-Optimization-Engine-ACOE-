@@ -58,10 +58,6 @@ class ProcurementRecord(BaseModel):
     payment_frequency: str = "monthly"
     description: str = ""
 
-    class Config:
-        json_encoders = {datetime: lambda v: v.isoformat()}
-
-
 class SaaSSubscription(BaseModel):
     subscription_id: str
     vendor_name: str
@@ -79,10 +75,6 @@ class SaaSSubscription(BaseModel):
             return 0.0
         return self.active_users / self.total_licenses
 
-    class Config:
-        json_encoders = {datetime: lambda v: v.isoformat()}
-
-
 class CloudUsage(BaseModel):
     resource_id: str
     provider: str
@@ -99,10 +91,6 @@ class CloudUsage(BaseModel):
         if self.capacity_units == 0:
             return 0.0
         return self.avg_usage_units / self.capacity_units
-
-    class Config:
-        json_encoders = {datetime: lambda v: v.isoformat()}
-
 
 class SLAMetric(BaseModel):
     sla_id: str
@@ -126,10 +114,6 @@ class SLAMetric(BaseModel):
     def hours_to_breach(self) -> float:
         delta = self.breach_deadline - self.measurement_timestamp
         return max(delta.total_seconds() / 3600, 0)
-
-    class Config:
-        json_encoders = {datetime: lambda v: v.isoformat()}
-
 
 # ── Pipeline Output Models ───────────────────────────────────────────────────
 

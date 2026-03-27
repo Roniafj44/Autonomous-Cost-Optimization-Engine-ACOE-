@@ -68,6 +68,18 @@ class ACOEOrchestrator:
         # Idempotency keys
         self._executed_keys = state_db.get_executed_keys() if state_db else []
 
+    def _run_stage_with_cb(self, stage: str, func, *args):
+        """
+        Execute a stage function with circuit-breaker protection when enabled.
+
+        This small helper removes repetitive branching from each stage:
+        - If a circuit breaker manager is configured, the call is wrapped.
+        - Otherwise the function runs directly.
+        """
+        if self.cb_manager:
+            return self.cb_manager.get(stage).call(func, *args)
+        return func(*args)
+
     async def start(self):
         """Start the autonomous loop (used by legacy main.py)."""
         self._running = True
@@ -125,10 +137,7 @@ class ACOEOrchestrator:
         # ── STAGE 1: INGEST ──────────────────────────────────────────
         logger.info(">> STAGE 1: INGESTION")
         try:
-            if self.cb_manager:
-                data = self.cb_manager.get("ingestion").call(self.ingestion.run)
-            else:
-                data = self.ingestion.run()
+            data = self._run_stage_with_cb("ingestion", self.ingestion.run)
             self.latest_data = data
             total_records = sum(len(v) for v in data.values())
             logger.info(f"  [OK] Ingested {total_records} records")
@@ -140,10 +149,7 @@ class ACOEOrchestrator:
         # ── STAGE 2: DETECT ──────────────────────────────────────────
         logger.info(">> STAGE 2: DETECTION")
         try:
-            if self.cb_manager:
-                issues = self.cb_manager.get("detection").call(self.detection.run, data)
-            else:
-                issues = self.detection.run(data)
+            issues = self._run_stage_with_cb("detection", self.detection.run, data)
             self.latest_issues = issues
             cycle.issues_detected = len(issues)
             logger.info(f"  [OK] Detected {len(issues)} inefficiencies")
@@ -156,10 +162,7 @@ class ACOEOrchestrator:
         # ── STAGE 3: DECIDE ──────────────────────────────────────────
         logger.info(">> STAGE 3: DECISION")
         try:
-            if self.cb_manager:
-                actions = self.cb_manager.get("decision").call(self.decision.run, issues)
-            else:
-                actions = self.decision.run(issues)
+            actions = self._run_stage_with_cb("decision", self.decision.run, issues)
             self.latest_actions = actions
             logger.info(f"  [OK] Generated {len(actions)} action plans")
             for action in actions[:5]:
@@ -188,10 +191,7 @@ class ACOEOrchestrator:
         logger.info(">> STAGE 4: EXECUTION")
         try:
             self.execution.load_executed_keys(self._executed_keys)
-            if self.cb_manager:
-                exec_logs = self.cb_manager.get("execution").call(self.execution.run, actions)
-            else:
-                exec_logs = self.execution.run(actions)
+            exec_logs = self._run_stage_with_cb("execution", self.execution.run, actions)
             self._executed_keys = self.execution.get_executed_keys()
             executed = sum(1 for l in exec_logs if l.status.value in ("executed", "verified"))
             cycle.actions_executed = executed
@@ -213,12 +213,12 @@ class ACOEOrchestrator:
         # ── STAGE 5: VERIFY ──────────────────────────────────────────
         logger.info(">> STAGE 5: VERIFICATION")
         try:
-            if self.cb_manager:
-                verified_logs = self.cb_manager.get("verification").call(
-                    self.verification.run, actions, exec_logs
-                )
-            else:
-                verified_logs = self.verification.run(actions, exec_logs)
+            verified_logs = self._run_stage_with_cb(
+                "verification",
+                self.verification.run,
+                actions,
+                exec_logs,
+            )
             self.latest_executions = verified_logs
             verified_count = sum(1 for l in verified_logs if l.verified)
             logger.info(f"  [OK] Verified {verified_count}/{len(verified_logs)} executions")
@@ -230,12 +230,14 @@ class ACOEOrchestrator:
         # ── STAGE 6: IMPACT ──────────────────────────────────────────
         logger.info(">> STAGE 6: IMPACT ANALYSIS")
         try:
-            if self.cb_manager:
-                report = self.cb_manager.get("impact").call(
-                    self.impact.run, cycle_id, actions, verified_logs, issues
-                )
-            else:
-                report = self.impact.run(cycle_id, actions, verified_logs, issues)
+            report = self._run_stage_with_cb(
+                "impact",
+                self.impact.run,
+                cycle_id,
+                actions,
+                verified_logs,
+                issues,
+            )
             self.latest_report = report
             cycle.total_savings_inr = report.total_impact_inr
             self._cumulative_savings += report.total_impact_inr

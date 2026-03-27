@@ -66,6 +66,8 @@ flowchart TD
 
 The **ACOE** platform acts as a unified orchestrator overseeing granular agent modules, configuration centers, and API layers to manage cost-recovery operations seamlessly without human mediation.
 
+> New contributors: read [`docs/CODEBASE_GUIDE.md`](docs/CODEBASE_GUIDE.md) for a fast walkthrough, change map, and safe-change checklist.
+
 | Directory / File | Description & Usage |
 | :--- | :--- |
 | `run_acoe.py` | ⚡ **Unified Judge-Ready Demonstration Entry Point**. Runs an immediate, colorized 7-stage pipeline outputting a visual `BEFORE vs AFTER` terminal comparison before falling back to the autonomous background loop. |
