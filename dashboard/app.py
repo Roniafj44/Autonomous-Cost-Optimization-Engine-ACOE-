@@ -5,12 +5,14 @@ Pure view layer — calls backend agents directly, zero business logic.
 
 from __future__ import annotations
 
+import io
 import os
 import sys
 import time
 from datetime import datetime
 from collections import Counter
 import re
+import tempfile
 
 import streamlit as st
 import pandas as pd
@@ -434,14 +436,71 @@ NEO_BRUTAL_CSS = f"""
 #  DATA LAYER — Backend Integration
 # ═════════════════════════════════════════════════════════════════════════════
 
+def _save_uploaded_files_to_tmp() -> dict[str, str]:
+    """
+    Write any user-uploaded files to a temp directory and return
+    a map of {category: tmp_file_path}.  Returns {} if nothing uploaded.
+    """
+    overrides: dict[str, str] = {}
+    category_map = {
+        "upload_procurement": "procurement.csv",
+        "upload_saas": "saas_subscriptions.csv",
+        "upload_cloud": "cloud_usage.csv",
+        "upload_sla": "sla_metrics.csv",
+    }
+    for key, default_name in category_map.items():
+        uploaded = st.session_state.get(key)
+        if uploaded is None:
+            continue
+        suffix = os.path.splitext(uploaded.name)[1].lower()
+        # Convert XLSX → CSV in-memory so IngestionAgent can read it
+        if suffix in (".xlsx", ".xls"):
+            try:
+                import openpyxl  # noqa: F401
+                xl_df = pd.read_excel(io.BytesIO(uploaded.getvalue()))
+                csv_bytes = xl_df.to_csv(index=False).encode()
+                suffix = ".csv"
+            except Exception as e:
+                st.warning(f"Could not convert Excel file for {key}: {e}")
+                continue
+        elif suffix == ".json":
+            try:
+                json_df = pd.read_json(io.BytesIO(uploaded.getvalue()))
+                csv_bytes = json_df.to_csv(index=False).encode()
+                suffix = ".csv"
+            except Exception as e:
+                st.warning(f"Could not convert JSON file for {key}: {e}")
+                continue
+        else:  # plain CSV
+            csv_bytes = uploaded.getvalue()
+
+        tmp = tempfile.NamedTemporaryFile(
+            delete=False, suffix=".csv", mode="wb"
+        )
+        tmp.write(csv_bytes)
+        tmp.flush()
+        tmp.close()
+        cat = key.replace("upload_", "")
+        overrides[cat] = tmp.name
+    return overrides
+
+
 def load_data():
     """Run the full 7-stage autonomous pipeline and cache results."""
     if "pipeline_run" in st.session_state and not st.session_state.get("force_rerun"):
         return
 
     with st.spinner("EXECUTING AUTONOMOUS PIPELINE..."):
-        # Stage 1: Ingestion
+        # Stage 1: Ingestion (supports uploaded file overrides)
+        file_overrides = _save_uploaded_files_to_tmp()
         ingestion = IngestionAgent()
+
+        # Temporarily patch data_dir paths if user uploaded files
+        if file_overrides:
+            original_dir = ingestion.data_dir
+            # monkey-patch the individual loader paths via method override
+            _patch_ingestion_agent(ingestion, file_overrides)
+
         data = ingestion.run()
 
         # Stage 2: Detection
@@ -496,6 +555,40 @@ def load_data():
             "penalty_exposure": penalty_exposure,
             "total_monthly": total_monthly_before,
         }
+
+
+def _patch_ingestion_agent(agent: IngestionAgent, overrides: dict[str, str]) -> None:
+    """
+    Monkey-patch the IngestionAgent so uploaded files shadow the default CSVs.
+    overrides keys: procurement | saas | cloud | sla
+    """
+    import types
+
+    category_file_map = {
+        "procurement": "procurement.csv",
+        "saas": "saas_subscriptions.csv",
+        "cloud": "cloud_usage.csv",
+        "sla": "sla_metrics.csv",
+    }
+
+    for cat, tmp_path in overrides.items():
+        default_name = category_file_map.get(cat)
+        if not default_name:
+            continue
+        # Build a closure-safe method that patches _read_csv for the specific file
+        original_read_csv = agent._read_csv
+
+        def make_patched(orig, target_fname, override_path):
+            def _patched_read_csv(path):
+                if os.path.basename(path) == target_fname:
+                    return orig(override_path)
+                return orig(path)
+            return _patched_read_csv
+
+        agent._read_csv = types.MethodType(
+            make_patched(agent._read_csv, default_name, tmp_path),
+            agent,
+        )
 
 
 def run_optimization():
@@ -994,6 +1087,184 @@ def render_audit_tab():
         )
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+#  UPLOAD TAB
+# ─────────────────────────────────────────────────────────────────────────────
+
+SUPPORTED_FORMATS = {
+    "CSV": ".csv",
+    "JSON (array of objects)": ".json",
+    "Excel (XLSX / XLS)": ".xlsx / .xls",
+}
+
+UPLOAD_CATEGORIES = [
+    (
+        "upload_procurement",
+        "📦 Procurement Data",
+        ["csv", "json", "xlsx", "xls"],
+        ["record_id", "vendor_name", "service_category", "contract_value_inr",
+         "contract_start", "contract_end", "department"],
+        "procurement.csv",
+    ),
+    (
+        "upload_saas",
+        "💻 SaaS Subscriptions",
+        ["csv", "json", "xlsx", "xls"],
+        ["subscription_id", "vendor_name", "product_name", "total_licenses",
+         "active_users", "monthly_cost_inr", "renewal_date", "department"],
+        "saas_subscriptions.csv",
+    ),
+    (
+        "upload_cloud",
+        "☁️ Cloud Usage",
+        ["csv", "json", "xlsx", "xls"],
+        ["resource_id", "provider", "resource_type", "region",
+         "capacity_units", "avg_usage_units", "peak_usage_units",
+         "monthly_cost_inr", "department"],
+        "cloud_usage.csv",
+    ),
+    (
+        "upload_sla",
+        "📋 SLA Metrics",
+        ["csv", "json", "xlsx", "xls"],
+        ["sla_id", "service_name", "vendor_name", "metric_name",
+         "target_value", "current_value", "measurement_unit",
+         "breach_penalty_inr", "measurement_timestamp", "breach_deadline"],
+        "sla_metrics.csv",
+    ),
+]
+
+
+def render_upload_tab():
+    """📂 UPLOAD tab — let users supply their own data files."""
+
+    st.markdown(
+        f'<div class="insight-box" style="border-left-color:{GLOW};">'
+        f'📂 <strong>UPLOAD YOUR DATA</strong> — Replace any or all default data '
+        f'sources with your own files. The pipeline will re-run automatically '
+        f'using the uploaded data.'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
+
+    # ── Supported formats legend
+    st.markdown("### SUPPORTED FILE FORMATS")
+    fmt_cols = st.columns(len(SUPPORTED_FORMATS))
+    for col, (label, ext) in zip(fmt_cols, SUPPORTED_FORMATS.items()):
+        col.markdown(
+            f'<div class="neo-card" style="text-align:center;padding:16px;">'
+            f'<div class="neo-label">{label}</div>'
+            f'<div style="font-family:Space Mono,monospace;font-weight:700;'
+            f'font-size:1.1rem;margin-top:6px;">{ext}</div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("---")
+
+    # ── Per-category uploaders
+    st.markdown("### UPLOAD DATA FILES")
+    any_uploaded = False
+
+    for key, label, file_types, required_cols, default_file in UPLOAD_CATEGORIES:
+        st.markdown(
+            f'<div class="neo-label" style="margin-bottom:4px;">{label}</div>',
+            unsafe_allow_html=True,
+        )
+
+        uploaded = st.file_uploader(
+            f"Upload {label} file — CSV, JSON, or XLSX",
+            type=file_types,
+            key=f"uploader_{key}",
+            label_visibility="collapsed",
+            help=(
+                f"Accepted formats: {', '.join('.' + t for t in file_types)}\n"
+                f"Required columns: {', '.join(required_cols)}"
+            ),
+        )
+
+        if uploaded is not None:
+            st.session_state[key] = uploaded
+            any_uploaded = True
+            # Preview
+            try:
+                ext = os.path.splitext(uploaded.name)[1].lower()
+                if ext in (".xlsx", ".xls"):
+                    preview_df = pd.read_excel(io.BytesIO(uploaded.getvalue()))
+                elif ext == ".json":
+                    preview_df = pd.read_json(io.BytesIO(uploaded.getvalue()))
+                else:
+                    preview_df = pd.read_csv(io.BytesIO(uploaded.getvalue()))
+
+                # Validate required columns
+                missing = [c for c in required_cols if c not in preview_df.columns]
+                if missing:
+                    st.warning(
+                        f"⚠️ Missing columns in {uploaded.name}: {', '.join(missing)}\n"
+                        f"Pipeline may fail or produce incomplete results."
+                    )
+                else:
+                    st.success(
+                        f"✅ {uploaded.name} — {len(preview_df):,} rows × "
+                        f"{len(preview_df.columns)} columns — all required columns found."
+                    )
+
+                with st.expander(f"Preview: {uploaded.name} (first 5 rows)", expanded=False):
+                    st.dataframe(preview_df.head(5), use_container_width=True, hide_index=True)
+
+            except Exception as e:
+                st.error(f"Could not parse {uploaded.name}: {e}")
+        else:
+            # Show if a previously uploaded file is still in session
+            cached = st.session_state.get(key)
+            if cached is not None:
+                st.caption(f"↳ Using previously uploaded: **{cached.name}**")
+                any_uploaded = True
+
+        # Show required columns reference
+        with st.expander(f"Required columns for {label}", expanded=False):
+            st.markdown(
+                f'<div class="neo-card" style="background-color:{OFF_WHITE};padding:16px;">'
+                f'<div class="neo-label">Default file: <code>{default_file}</code></div><br>'
+                + "".join(
+                    f'<span class="neo-badge" style="margin:3px;display:inline-block;">'
+                    f'{col}</span>'
+                    for col in required_cols
+                )
+                + "</div>",
+                unsafe_allow_html=True,
+            )
+
+        st.markdown("")
+
+    # ── Action buttons
+    st.markdown("---")
+    col_run, col_clear = st.columns([2, 1])
+
+    with col_run:
+        if st.button(
+            "▶ RUN PIPELINE WITH UPLOADED DATA",
+            disabled=not any_uploaded,
+            use_container_width=True,
+            key="upload_run_btn",
+        ):
+            run_optimization()
+            st.rerun()
+
+    with col_clear:
+        if st.button("🗑 CLEAR ALL UPLOADS", use_container_width=True, key="upload_clear_btn"):
+            for key, *_ in UPLOAD_CATEGORIES:
+                st.session_state.pop(key, None)
+                st.session_state.pop(f"uploader_{key}", None)
+            st.success("All uploads cleared. Pipeline will use default data on next run.")
+
+    if not any_uploaded:
+        st.info(
+            "ℹ️ No files uploaded yet. The pipeline will continue using the built-in "
+            "synthetic dataset. Upload one or more files above to analyze your real data."
+        )
+
+
 # ═════════════════════════════════════════════════════════════════════════════
 #  MAIN APPLICATION
 # ═════════════════════════════════════════════════════════════════════════════
@@ -1027,6 +1298,30 @@ with st.sidebar:
     if st.button("▶ RUN OPTIMIZATION", use_container_width=True):
         run_optimization()
         st.rerun()
+
+    st.markdown("---")
+    st.markdown(
+        f'<div style="font-family:Space Mono,monospace;font-size:0.75rem;'
+        f'text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;margin-bottom:6px;">'
+        f'UPLOAD STATUS</div>',
+        unsafe_allow_html=True,
+    )
+    upload_keys = ["upload_procurement", "upload_saas", "upload_cloud", "upload_sla"]
+    upload_labels = ["Procurement", "SaaS", "Cloud", "SLA"]
+    for uk, ul in zip(upload_keys, upload_labels):
+        cached = st.session_state.get(uk)
+        if cached:
+            st.markdown(
+                f'<div style="font-family:Space Mono,monospace;font-size:0.7rem;'
+                f'color:{ACCENT};margin-bottom:2px;">✓ {ul}: {cached.name}</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            st.markdown(
+                f'<div style="font-family:Space Mono,monospace;font-size:0.7rem;'
+                f'opacity:0.5;margin-bottom:2px;">○ {ul}: default</div>',
+                unsafe_allow_html=True,
+            )
 
     st.markdown("---")
 
@@ -1064,13 +1359,14 @@ if st.session_state.get("demo_mode"):
 render_agent_trace()
 
 # ── Tabs
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
     "🚨 PROBLEM",
     "🔍 DETECTION",
     "🧠 DECISION",
     "⚙️ EXECUTION",
     "💰 IMPACT",
     "📜 AUDIT",
+    "📂 UPLOAD DATA",
 ])
 
 with tab1:
@@ -1090,3 +1386,6 @@ with tab5:
 
 with tab6:
     render_audit_tab()
+
+with tab7:
+    render_upload_tab()

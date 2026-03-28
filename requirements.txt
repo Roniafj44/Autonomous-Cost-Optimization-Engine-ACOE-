@@ -7,3 +7,4 @@ numpy>=1.26.0
 requests>=2.31.0
 scikit-learn>=1.4.0
 pyyaml>=6.0
+openpyxl>=3.1.0
