@@ -42,9 +42,9 @@ No manual approval. No human-in-the-loop. **Fully autonomous.**
 
 ```mermaid
 graph TD
-    classDef primary fill:#f9f6ff,stroke:#7b1fa2,stroke-width:2px
-    classDef stage fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef data fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef primary fill:#ff9ff3,stroke:#f368e0,stroke-width:3px,color:#000
+    classDef stage fill:#48dbfb,stroke:#0abde3,stroke-width:3px,color:#000
+    classDef data fill:#feca57,stroke:#ff9f43,stroke-width:3px,color:#000
     
     subgraph "Data Sources (CSV/JSON)"
         DB1[(Procurement)]:::data
