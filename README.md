@@ -38,6 +38,53 @@ No manual approval. No human-in-the-loop. **Fully autonomous.**
 
 ## 🏗️ Architecture & Tech Stack
 
+### System Architecture & Workflow Diagram
+
+```mermaid
+graph TD
+    classDef primary fill:#f9f6ff,stroke:#7b1fa2,stroke-width:2px
+    classDef stage fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef data fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    
+    subgraph "Data Sources (CSV/JSON)"
+        DB1[(Procurement)]:::data
+        DB2[(SaaS)]:::data
+        DB3[(Cloud)]:::data
+        DB4[(SLA)]:::data
+    end
+
+    subgraph "ACOE Autonomous Core"
+        direction TB
+        S1[1. Ingestion]:::stage
+        S2[2. Detection]:::stage 
+        S3[3. Decision]:::stage
+        S4[4. Execution]:::stage
+        S5[5. Verification]:::stage
+        S6[6. Audit]:::stage
+        S7[7. Impact]:::stage
+        
+        S1 -->|Validates Data| S2
+        S2 -->|Flags Inefficiencies| S3
+        S3 -->|Scores ROI & Risk| S4
+        S4 -->|Takes Auto-Action| S5
+        S5 -->|Checks 4-Point Logic| S6
+        S6 -->|Immutable Logging| S7
+    end
+
+    DB1 -.-> S1
+    DB2 -.-> S1
+    DB3 -.-> S1
+    DB4 -.-> S1
+
+    UI[Streamlit Dashboard / CLI]:::primary
+    S7 -->|Before vs After Financials| UI
+    
+    MCP[MCP Servers / API]:::primary
+    MCP <-->|Tool Execution| S1
+```
+
+### Tech Stack
+
 | Layer | Technology |
 |---|---|
 | **Language** | Python 3.10+ |
