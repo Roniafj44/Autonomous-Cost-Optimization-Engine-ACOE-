@@ -1,0 +1,59 @@
+{
+  "mcpServers": {
+    "acoe-pipeline": {
+      "command": "python",
+      "args": ["mcp_servers/pipeline_server.py"],
+      "cwd": ".",
+      "description": "ACOE 7-Stage Autonomous Cost Optimization Pipeline",
+      "tools": [
+        "acoe_ingest",
+        "acoe_detect",
+        "acoe_decide",
+        "acoe_execute",
+        "acoe_verify",
+        "acoe_audit",
+        "acoe_impact",
+        "acoe_run_full_cycle"
+      ]
+    },
+    "acoe-data": {
+      "command": "python",
+      "args": ["mcp_servers/data_server.py"],
+      "cwd": ".",
+      "description": "ACOE Data Management — CRUD on enterprise data sources",
+      "tools": [
+        "data_list_sources",
+        "data_read_source",
+        "data_add_record",
+        "data_update_record",
+        "data_get_summary"
+      ]
+    },
+    "acoe-config": {
+      "command": "python",
+      "args": ["mcp_servers/config_server.py"],
+      "cwd": ".",
+      "description": "ACOE Configuration Management — dynamic settings",
+      "tools": [
+        "config_get_all",
+        "config_get_value",
+        "config_set_value",
+        "config_reset"
+      ]
+    },
+    "acoe-monitoring": {
+      "command": "python",
+      "args": ["mcp_servers/monitoring_server.py"],
+      "cwd": ".",
+      "description": "ACOE Monitoring & Analytics — status, audit, predictions",
+      "tools": [
+        "monitor_system_status",
+        "monitor_get_audit_logs",
+        "monitor_get_metrics",
+        "analytics_simulate",
+        "analytics_predict_savings",
+        "analytics_predict_risks"
+      ]
+    }
+  }
+}

@@ -161,7 +161,19 @@ ACOE/
 │
 ├── config.yaml                    # ★ EDIT THIS to change thresholds/behavior
 ├── Dockerfile                     # Docker build file
-└── docker-compose.yml             # Docker Compose (ACOE + API together)
+├── docker-compose.yml             # Docker Compose (ACOE + API together)
+│
+├── mcp_servers/                   # ★ MCP SERVERS — AI-callable tool endpoints
+│   ├── __init__.py
+│   ├── base.py                    # JSON-RPC 2.0 server framework
+│   ├── utils.py                   # Shared utilities
+│   ├── pipeline_server.py         # Pipeline tools (8 tools)
+│   ├── data_server.py             # Data CRUD tools (5 tools)
+│   ├── config_server.py           # Config tools (4 tools)
+│   ├── monitoring_server.py       # Monitoring tools (6 tools)
+│   └── launcher.py                # Unified launcher + test suite
+│
+└── mcp_config.json                # MCP client configuration file
 ```
 
 ---
@@ -425,6 +437,112 @@ AFTER Optimization:
   TOTAL SAVINGS           ₹X,XX,XX,XXX/year
   COST REDUCTION:         XX.X%
   HUMAN INTERVENTION:     NONE — Fully Autonomous
+```
+
+---
+
+## 🔌 MCP Servers (Model Context Protocol)
+
+ACOE includes **4 MCP servers** that expose the entire system as AI-callable tools. Any MCP-compatible AI assistant can autonomously run pipeline stages, manage data, adjust configuration, and query analytics.
+
+### Quick Start
+
+```bash
+# List all available servers
+python mcp_servers/launcher.py
+
+# Run self-tests on all servers (verify everything works)
+python mcp_servers/launcher.py --test
+
+# Start a specific server
+python mcp_servers/launcher.py pipeline      # 7-stage pipeline tools
+python mcp_servers/launcher.py data          # Data CRUD tools
+python mcp_servers/launcher.py config        # Config management tools
+python mcp_servers/launcher.py monitoring    # Analytics & monitoring tools
+```
+
+### Server Architecture
+
+| Server | Tools | Description |
+|--------|-------|-------------|
+| **acoe-pipeline** | 8 | Run each of the 7 pipeline stages individually or all at once |
+| **acoe-data** | 5 | CRUD operations on procurement/SaaS/cloud/SLA CSV data |
+| **acoe-config** | 4 | Read/update `config.yaml` settings dynamically |
+| **acoe-monitoring** | 6 | System status, audit logs, metrics, simulation, predictions |
+
+### Tool Reference
+
+#### Pipeline Server (8 tools)
+
+| Tool | Description |
+|------|-------------|
+| `acoe_ingest` | Stage 1: Load & validate enterprise data from CSV sources |
+| `acoe_detect` | Stage 2: Detect cost inefficiencies using rules + z-score |
+| `acoe_decide` | Stage 3: Generate action plans with ROI/risk scoring |
+| `acoe_execute` | Stage 4: Execute actions autonomously with retry logic |
+| `acoe_verify` | Stage 5: 4-point outcome verification |
+| `acoe_audit` | Stage 6: Write immutable audit trail |
+| `acoe_impact` | Stage 7: Compute financial impact report (Before vs After) |
+| `acoe_run_full_cycle` | Run all 7 stages end-to-end in one call |
+------
+#### Data Server (5 tools)
+
+| Tool | Description |
+|------|-------------|
+| `data_list_sources` | List all data files with record counts and schemas |
+| `data_read_source` | Read records from a specific source (procurement/saas/cloud/sla) |
+| `data_add_record` | Add a new record to a CSV data source |
+| `data_update_record` | Update an existing record by ID |
+| `data_get_summary` | Get aggregate statistics and spend totals across all sources |
+
+#### Config Server (4 tools)
+
+| Tool | Description |
+|------|-------------|
+| `config_get_all` | Get the complete current configuration |
+| `config_get_value` | Get a specific config value by dot notation (e.g. `thresholds.saas_utilization_pct`) |
+| `config_set_value` | Update a config value dynamically at runtime |
+| `config_reset` | Reload configuration from `config.yaml` |
+
+#### Monitoring Server (6 tools)
+
+| Tool | Description |
+|------|-------------|
+| `monitor_system_status` | Get system health, data files, cycle count |
+| `monitor_get_audit_logs` | Retrieve recent audit trail entries |
+| `monitor_get_metrics` | Get aggregate performance metrics |
+| `analytics_simulate` | Run what-if scenarios (aggressive/conservative/balanced) |
+| `analytics_predict_savings` | Forecast future savings trends |
+| `analytics_predict_risks` | Analyze SLA breach risks and cost leak exposure |
+
+### Integration with AI Assistants
+
+Use the provided `mcp_config.json` to connect AI assistants:
+
+```json
+{
+  "mcpServers": {
+    "acoe-pipeline": {
+      "command": "python",
+      "args": ["mcp_servers/pipeline_server.py"],
+      "cwd": "/path/to/ACOE"
+    }
+  }
+}
+```
+
+### MCP Server Files
+
+```
+mcp_servers/
+├── __init__.py              # Package init
+├── base.py                  # MCP base server framework (JSON-RPC 2.0 over stdio)
+├── utils.py                 # Shared utilities (serialization, CSV I/O, validation)
+├── pipeline_server.py       # Pipeline MCP server (8 tools)
+├── data_server.py           # Data management MCP server (5 tools)
+├── config_server.py         # Config management MCP server (4 tools)
+├── monitoring_server.py     # Monitoring & analytics MCP server (6 tools)
+└── launcher.py              # Unified launcher with self-test suite
 ```
 
 ---
